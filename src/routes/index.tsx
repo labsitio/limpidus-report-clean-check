@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
         <PublicRoute path="/login" exact component={SignIn} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PublicRoute path="/history" component={History} />
-        {/* <Route path="*" component={() => <Redirect to="/login" />} /> */}
+        <Route path="*" component={() => <Redirect to="/history" />} />
       </Switch>
     </>
   );
