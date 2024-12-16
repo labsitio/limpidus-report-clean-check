@@ -1,0 +1,1775 @@
+[
+    {
+        "id": "6647d00432786b8b11679d4e",
+        "department": "Diretoria",
+        "employee": "Diego Morais",
+        "dateStart": "2024-05-17T21:45:40.562Z",
+        "dateEnd": "2024-05-17T18:45:40Z",
+        "duration": "03:00:00.5620000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cbf4b32786b8b11679d6e",
+        "department": "Salão",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-05-21T15:35:39.472Z",
+        "dateEnd": "2024-05-21T12:35:07Z",
+        "duration": "03:00:32.4720000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cbf4b32786b8b11679d6f",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-05-21T15:35:39.69Z",
+        "dateEnd": "2024-05-21T12:35:23Z",
+        "duration": "03:00:16.6900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04832786b8b11679d7d",
+        "department": "Sala Reunião 3",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:40.347Z",
+        "dateEnd": "2024-05-21T16:00:41Z",
+        "duration": "03:03:59.3470000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04832786b8b11679d7e",
+        "department": "Salão",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:40.552Z",
+        "dateEnd": "2024-05-21T15:58:41Z",
+        "duration": "03:05:59.5520000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04832786b8b11679d7f",
+        "department": "Copa",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:40.673Z",
+        "dateEnd": "2024-05-21T16:00:00Z",
+        "duration": "03:04:40.6730000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04832786b8b11679d80",
+        "department": "Sala Reunião 3",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:40.795Z",
+        "dateEnd": "2024-05-21T16:01:49Z",
+        "duration": "03:02:51.7950000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04832786b8b11679d81",
+        "department": "Salão",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:40.921Z",
+        "dateEnd": "2024-05-21T16:02:05Z",
+        "duration": "03:02:35.9210000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf04932786b8b11679d82",
+        "department": "Diretoria",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:04:41.043Z",
+        "dateEnd": "2024-05-21T16:00:08Z",
+        "duration": "03:04:33.0430000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf07432786b8b11679d83",
+        "department": "Sala Reunião 2",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:05:24.769Z",
+        "dateEnd": "2024-05-21T16:02:50Z",
+        "duration": "03:02:34.7690000",
+        "status": "Pendente"
+    },
+    {
+        "id": "664cf07432786b8b11679d84",
+        "department": "Banheiros lado direito",
+        "employee": "Victor Teste1",
+        "dateStart": "2024-05-21T19:05:24.89Z",
+        "dateEnd": "2024-05-21T16:03:02Z",
+        "duration": "03:02:22.8900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6659f672c9660f73deaeb864",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Hshdh Bxbdbdb",
+        "dateStart": "2024-05-31T16:10:26.263Z",
+        "dateEnd": "2024-05-31T12:18:59Z",
+        "duration": "03:51:27.2630000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6659f939c9660f73deaeb867",
+        "department": "Hall Elevadores / Recepção 2 (Não consta)",
+        "employee": "Ncndj Dnxbxbd",
+        "dateStart": "2024-05-31T16:22:17.915Z",
+        "dateEnd": "2024-05-31T13:22:04Z",
+        "duration": "03:00:13.9150000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a44e2c9660f73deaeb912",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Hxhf Dbxbxn",
+        "dateStart": "2024-05-31T21:45:06.444Z",
+        "dateEnd": "2024-05-31T18:44:45Z",
+        "duration": "03:00:21.4440000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a451bc9660f73deaeb91b",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Dieogjnf Kdhdbdbdb",
+        "dateStart": "2024-05-31T21:46:03.76Z",
+        "dateEnd": "2024-05-31T18:45:49Z",
+        "duration": "03:00:14.7600000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a4669c9660f73deaeb927",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Hdbdbdbd Bdbdbd",
+        "dateStart": "2024-05-31T21:51:37.315Z",
+        "dateEnd": "2024-05-31T18:47:47Z",
+        "duration": "03:03:50.3150000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a46f1c9660f73deaeb92a",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Diego Morais",
+        "dateStart": "2024-05-31T21:53:53.103Z",
+        "dateEnd": "2024-05-31T18:53:34Z",
+        "duration": "03:00:19.1030000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a4916c9660f73deaeb92d",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Jdhfhd Nxbxbc",
+        "dateStart": "2024-05-31T22:03:02.529Z",
+        "dateEnd": "2024-05-31T19:02:26Z",
+        "duration": "03:00:36.5290000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a4995c9660f73deaeb930",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Hxbf Dbxnxn",
+        "dateStart": "2024-05-31T22:05:09.395Z",
+        "dateEnd": "2024-05-31T19:04:51Z",
+        "duration": "03:00:18.3950000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a5166c9660f73deaeb975",
+        "department": "RECEPÇÕES - PISO FRIO",
+        "employee": "Odudhdnc Jxnxbcb",
+        "dateStart": "2024-05-31T22:38:30.463Z",
+        "dateEnd": "2024-05-31T19:30:28Z",
+        "duration": "03:08:02.4630000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c64c9660f73deaeb9e9",
+        "department": "Banheiros lado direito",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:40.581Z",
+        "dateEnd": "2024-05-31T21:27:04Z",
+        "duration": "03:06:36.5810000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c64c9660f73deaeb9ea",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:40.793Z",
+        "dateEnd": "2024-05-31T21:25:06Z",
+        "duration": "03:08:34.7930000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c64c9660f73deaeb9eb",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:40.914Z",
+        "dateEnd": "2024-05-31T21:25:25Z",
+        "duration": "03:08:15.9140000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9ec",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.041Z",
+        "dateEnd": "2024-05-31T21:27:26Z",
+        "duration": "03:06:15.0410000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9ed",
+        "department": "Sala Reunião 1",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.177Z",
+        "dateEnd": "2024-05-31T21:25:35Z",
+        "duration": "03:08:06.1770000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9ee",
+        "department": "Salão",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.371Z",
+        "dateEnd": "2024-05-31T21:26:29Z",
+        "duration": "03:07:12.3710000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9ef",
+        "department": "Diretoria",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.516Z",
+        "dateEnd": "2024-05-31T21:26:51Z",
+        "duration": "03:06:50.5160000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9f0",
+        "department": "Sala Reunião 3",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.641Z",
+        "dateEnd": "2024-05-31T21:25:54Z",
+        "duration": "03:07:47.6410000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665a6c65c9660f73deaeb9f1",
+        "department": "Banheiro Masculino",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T00:33:41.766Z",
+        "dateEnd": "2024-05-31T21:33:29Z",
+        "duration": "03:00:12.7660000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665b18afc9660f73deaeba36",
+        "department": "Corredores",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T12:48:47.187Z",
+        "dateEnd": "2024-06-01T09:48:29Z",
+        "duration": "03:00:18.1870000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665b18afc9660f73deaeba37",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T12:48:47.353Z",
+        "dateEnd": "2024-06-01T09:48:19Z",
+        "duration": "03:00:28.3530000",
+        "status": "Pendente"
+    },
+    {
+        "id": "665b18afc9660f73deaeba38",
+        "department": "Departamento Financeiro",
+        "employee": "Diego Morais",
+        "dateStart": "2024-06-01T12:48:47.475Z",
+        "dateEnd": "2024-06-01T09:48:17Z",
+        "duration": "03:00:30.4750000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6661086fc9660f73deaebc6a",
+        "department": "Corredores",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-06-06T00:53:03.445Z",
+        "dateEnd": "2024-06-05T21:52:50Z",
+        "duration": "03:00:13.4450000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6661086fc9660f73deaebc6b",
+        "department": "Sala Reunião 1",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-06-06T00:53:03.836Z",
+        "dateEnd": "2024-06-05T21:52:49Z",
+        "duration": "03:00:14.8360000",
+        "status": "Pendente"
+    },
+    {
+        "id": "667476bbc9660f73deaec179",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Victor Teste 02",
+        "dateStart": "2024-06-20T18:36:43.118Z",
+        "dateEnd": "2024-06-20T15:33:24Z",
+        "duration": "03:03:19.1180000",
+        "status": "Pendente"
+    },
+    {
+        "id": "667476bbc9660f73deaec17a",
+        "department": "Sala Reunião 3",
+        "employee": "Victor Teste 02",
+        "dateStart": "2024-06-20T18:36:43.287Z",
+        "dateEnd": "2024-06-20T15:32:48Z",
+        "duration": "03:03:55.2870000",
+        "status": "Pendente"
+    },
+    {
+        "id": "667477b6c9660f73deaec17d",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Teste Teste",
+        "dateStart": "2024-06-20T18:40:54.12Z",
+        "dateEnd": "2024-06-20T15:35:09Z",
+        "duration": "03:05:45.1200000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66747dbcc9660f73deaec19f",
+        "department": "Sala Reunião 2",
+        "employee": "Teste Teste",
+        "dateStart": "2024-06-20T19:06:36.952Z",
+        "dateEnd": "2024-06-20T16:02:59Z",
+        "duration": "03:03:37.9520000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee3a5d011351da8e56529",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T22:56:37.732Z",
+        "dateEnd": "2024-07-22T19:56:27Z",
+        "duration": "03:00:10.7320000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee770d011351da8e5652c",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Dirgo M9rhsbd",
+        "dateStart": "2024-07-22T23:12:48.639Z",
+        "dateEnd": "2024-07-22T20:03:42Z",
+        "duration": "03:09:06.6390000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee806d011351da8e5652f",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:15:18.875Z",
+        "dateEnd": "2024-07-22T20:15:10Z",
+        "duration": "03:00:08.8750000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee87bd011351da8e56530",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:17:15.36Z",
+        "dateEnd": "2024-07-22T20:17:05Z",
+        "duration": "03:00:10.3600000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee940d011351da8e56531",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:20:32.719Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:00:08.7190000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ee9b9d011351da8e56532",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:22:33.418Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:02:09.4180000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eea17d011351da8e56533",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:24:07.63Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:03:43.6300000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eeb33d011351da8e56534",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:28:51.189Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:08:27.1890000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eeba0d011351da8e56535",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:30:40.935Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:10:16.9350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eebf5d011351da8e56536",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:32:05.675Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:11:41.6750000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec0dd011351da8e56537",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:32:29.32Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:12:05.3200000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec1ed011351da8e56538",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:32:46.792Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:12:22.7920000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec23d011351da8e56539",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:32:51.86Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:12:27.8600000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec36d011351da8e5653a",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:33:10.756Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:12:46.7560000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec56d011351da8e5653b",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:33:42.697Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:13:18.6970000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec69d011351da8e5653c",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:34:01.844Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:13:37.8440000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eec90d011351da8e5653d",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:34:40.493Z",
+        "dateEnd": "2024-07-22T20:20:24Z",
+        "duration": "03:14:16.4930000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eedf7d011351da8e5653e",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:40:39.59Z",
+        "dateEnd": "2024-07-22T20:40:32Z",
+        "duration": "03:00:07.5900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eee1ad011351da8e5653f",
+        "department": "Copa",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:41:14.613Z",
+        "dateEnd": "2024-07-22T20:40:32Z",
+        "duration": "03:00:42.6130000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669eee91d011351da8e56540",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-07-22T23:43:13.663Z",
+        "dateEnd": "2024-07-22T20:43:02Z",
+        "duration": "03:00:11.6630000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669ef132d011351da8e56549",
+        "department": "Corredores",
+        "employee": "Diego Mrisufhd",
+        "dateStart": "2024-07-22T23:54:26.406Z",
+        "dateEnd": "2024-07-22T20:54:17Z",
+        "duration": "03:00:09.4060000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669f1b02d011351da8e56620",
+        "department": "Corredores",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T02:52:50.785Z",
+        "dateEnd": "2024-07-22T23:52:09Z",
+        "duration": "03:00:41.7850000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669f1b02d011351da8e56621",
+        "department": "Corredores",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T02:52:50.949Z",
+        "dateEnd": "2024-07-22T23:52:23Z",
+        "duration": "03:00:27.9490000",
+        "status": "Pendente"
+    },
+    {
+        "id": "669f1b03d011351da8e56622",
+        "department": "Salão",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T02:52:51.071Z",
+        "dateEnd": "2024-07-22T23:52:37Z",
+        "duration": "03:00:14.0710000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a00527d011351da8e5668f",
+        "department": "Departamento Financeiro",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T19:31:51.806Z",
+        "dateEnd": "2024-07-23T00:07:03Z",
+        "duration": "19:24:48.8060000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a00528d011351da8e56690",
+        "department": "Departamento Financeiro",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T19:31:52.881Z",
+        "dateEnd": "2024-07-22T23:53:16Z",
+        "duration": "19:38:36.8810000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a00529d011351da8e56691",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Kfhf Ncbxnx",
+        "dateStart": "2024-07-23T19:31:53.004Z",
+        "dateEnd": "2024-07-23T00:07:23Z",
+        "duration": "19:24:30.0040000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9cd011351da8e566cd",
+        "department": "Sala Reunião 2",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:40.539Z",
+        "dateEnd": "2024-07-23T19:10:02Z",
+        "duration": "03:01:38.5390000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9dd011351da8e566ce",
+        "department": "Corredores",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:41.463Z",
+        "dateEnd": "2024-07-23T18:40:27Z",
+        "duration": "03:31:14.4630000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9dd011351da8e566cf",
+        "department": "Sala Reunião 3",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:41.59Z",
+        "dateEnd": "2024-07-23T19:11:05Z",
+        "duration": "03:00:36.5900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9dd011351da8e566d0",
+        "department": "Departamento Financeiro",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:41.718Z",
+        "dateEnd": "2024-07-23T17:30:55Z",
+        "duration": "04:40:46.7180000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9dd011351da8e566d1",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:41.878Z",
+        "dateEnd": "2024-07-23T17:35:16Z",
+        "duration": "04:36:25.8780000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d2",
+        "department": "Departamento Financeiro",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.002Z",
+        "dateEnd": "2024-07-23T17:28:06Z",
+        "duration": "04:43:36.0020000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d3",
+        "department": "Diretoria",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.127Z",
+        "dateEnd": "2024-07-23T17:37:30Z",
+        "duration": "04:34:12.1270000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d4",
+        "department": "Sala Reunião 1",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.266Z",
+        "dateEnd": "2024-07-23T18:41:09Z",
+        "duration": "03:30:33.2660000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d5",
+        "department": "Salão",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.394Z",
+        "dateEnd": "2024-07-23T18:40:48Z",
+        "duration": "03:30:54.3940000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d6",
+        "department": "Sala Reunião 1",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.516Z",
+        "dateEnd": "2024-07-23T19:09:23Z",
+        "duration": "03:02:19.5160000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d7",
+        "department": "Banheiros lado direito",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.638Z",
+        "dateEnd": "2024-07-23T19:09:43Z",
+        "duration": "03:01:59.6380000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a02a9ed011351da8e566d8",
+        "department": "Banheiro Masculino",
+        "employee": "Bdjjf Jjcjd",
+        "dateStart": "2024-07-23T22:11:42.761Z",
+        "dateEnd": "2024-07-23T19:10:42Z",
+        "duration": "03:01:00.7610000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a03ae1d011351da8e567b9",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Fiego Diego",
+        "dateStart": "2024-07-23T23:21:05.277Z",
+        "dateEnd": "2024-07-23T20:20:22Z",
+        "duration": "03:00:43.2770000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a03ae1d011351da8e567ba",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Fiego Diego",
+        "dateStart": "2024-07-23T23:21:05.448Z",
+        "dateEnd": "2024-07-23T20:20:35Z",
+        "duration": "03:00:30.4480000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29265d011351da8e56854",
+        "department": "Sala Reunião 2",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:01.285Z",
+        "dateEnd": "2024-07-25T14:51:30Z",
+        "duration": "03:07:31.2850000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29265d011351da8e56855",
+        "department": "Sala Reunião 2",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:01.506Z",
+        "dateEnd": "2024-07-25T14:51:45Z",
+        "duration": "03:07:16.5060000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29265d011351da8e56856",
+        "department": "Corredores",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:01.631Z",
+        "dateEnd": "2024-07-25T14:52:10Z",
+        "duration": "03:06:51.6310000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29265d011351da8e56857",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:01.754Z",
+        "dateEnd": "2024-07-25T14:50:59Z",
+        "duration": "03:08:02.7540000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29265d011351da8e56858",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:01.876Z",
+        "dateEnd": "2024-07-25T14:49:46Z",
+        "duration": "03:09:15.8760000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29266d011351da8e56859",
+        "department": "Departamento Financeiro",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:02.004Z",
+        "dateEnd": "2024-07-25T14:52:26Z",
+        "duration": "03:06:36.0040000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29266d011351da8e5685a",
+        "department": "Salão",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:02.127Z",
+        "dateEnd": "2024-07-25T14:53:00Z",
+        "duration": "03:06:02.1270000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a29266d011351da8e5685b",
+        "department": "Sala Reunião 3",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-25T17:59:02.249Z",
+        "dateEnd": "2024-07-25T14:50:24Z",
+        "duration": "03:08:38.2490000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a391a6d011351da8e569a0",
+        "department": "Corredores",
+        "employee": "Maria Silva",
+        "dateStart": "2024-07-26T12:08:06.616Z",
+        "dateEnd": "2024-07-26T09:02:45Z",
+        "duration": "03:05:21.6160000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a3ac49d011351da8e56a43",
+        "department": "Salão",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-26T14:01:45.515Z",
+        "dateEnd": "2024-07-26T10:55:53Z",
+        "duration": "03:05:52.5150000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a3ac49d011351da8e56a44",
+        "department": "Sala Reunião 2",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-26T14:01:45.714Z",
+        "dateEnd": "2024-07-26T10:55:22Z",
+        "duration": "03:06:23.7140000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66a3ac49d011351da8e56a45",
+        "department": "Sala Reunião 3",
+        "employee": "Victor Teste",
+        "dateStart": "2024-07-26T14:01:45.84Z",
+        "dateEnd": "2024-07-26T10:55:38Z",
+        "duration": "03:06:07.8400000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66aa84c1d011351da8e56b98",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Moraisb",
+        "dateStart": "2024-07-31T18:38:57.06Z",
+        "dateEnd": "2024-07-31T15:26:10Z",
+        "duration": "03:12:47.0600000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66aa84c1d011351da8e56b99",
+        "department": "Corredores",
+        "employee": "Diego Moraisb",
+        "dateStart": "2024-07-31T18:38:57.251Z",
+        "dateEnd": "2024-07-31T15:29:37Z",
+        "duration": "03:09:20.2510000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f2e",
+        "department": "Salão",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.088Z",
+        "dateEnd": "2024-08-02T18:22:00Z",
+        "duration": "00:06:12.0880000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f2f",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.263Z",
+        "dateEnd": "2024-08-02T18:21:51Z",
+        "duration": "00:06:21.2630000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f30",
+        "department": "Corredores",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.385Z",
+        "dateEnd": "2024-08-02T18:22:19Z",
+        "duration": "00:05:53.3850000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f31",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.509Z",
+        "dateEnd": "2024-08-02T18:22:49Z",
+        "duration": "00:05:23.5090000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f32",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.635Z",
+        "dateEnd": "2024-08-02T18:22:34Z",
+        "duration": "00:05:38.6350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad253cd011351da8e56f33",
+        "department": "Corredores",
+        "employee": "Maria Silva",
+        "dateStart": "2024-08-02T18:28:12.758Z",
+        "dateEnd": "2024-08-02T18:21:40Z",
+        "duration": "00:06:32.7580000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e18d011351da8e57101",
+        "department": "Departamento Financeiro",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:00.587Z",
+        "dateEnd": "2024-08-02T18:58:09Z",
+        "duration": "00:07:51.5870000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e18d011351da8e57102",
+        "department": "Salão",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:00.877Z",
+        "dateEnd": "2024-08-02T18:57:29Z",
+        "duration": "00:08:31.8770000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e18d011351da8e57103",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:00.999Z",
+        "dateEnd": "2024-08-02T18:56:58Z",
+        "duration": "00:09:02.9990000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e19d011351da8e57104",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:01.128Z",
+        "dateEnd": "2024-08-02T18:59:40Z",
+        "duration": "00:06:21.1280000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e19d011351da8e57105",
+        "department": "Copa",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:01.253Z",
+        "dateEnd": "2024-08-02T18:58:56Z",
+        "duration": "00:07:05.2530000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e19d011351da8e57106",
+        "department": "Diretoria",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:01.383Z",
+        "dateEnd": "2024-08-02T18:59:07Z",
+        "duration": "00:06:54.3830000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e19d011351da8e57107",
+        "department": "Corredores",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:06:01.605Z",
+        "dateEnd": "2024-08-02T18:57:49Z",
+        "duration": "00:08:12.6050000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e8fd011351da8e571cc",
+        "department": "Sala Reunião 3",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:07:59.121Z",
+        "dateEnd": "2024-08-02T19:01:46Z",
+        "duration": "00:06:13.1210000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e8fd011351da8e571cd",
+        "department": "Sala Reunião 2",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:07:59.245Z",
+        "dateEnd": "2024-08-02T19:01:32Z",
+        "duration": "00:06:27.2450000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e8fd011351da8e571ce",
+        "department": "Banheiros lado direito",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:07:59.368Z",
+        "dateEnd": "2024-08-02T19:01:21Z",
+        "duration": "00:06:38.3680000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e8fd011351da8e571cf",
+        "department": "Sala Reunião 1",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:07:59.498Z",
+        "dateEnd": "2024-08-02T19:01:08Z",
+        "duration": "00:06:51.4980000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad2e8fd011351da8e571d0",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:07:59.621Z",
+        "dateEnd": "2024-08-02T19:01:38Z",
+        "duration": "00:06:21.6210000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66ad33d0d011351da8e57377",
+        "department": "Diretoria",
+        "employee": "Renata Moretto",
+        "dateStart": "2024-08-02T19:30:24.028Z",
+        "dateEnd": "2024-08-02T19:25:06Z",
+        "duration": "00:05:18.0280000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66decc32fb00f2ca6ffa353d",
+        "department": "Corredores",
+        "employee": "Diego Morais",
+        "dateStart": "2024-09-09T10:21:38.176Z",
+        "dateEnd": "2024-09-09T10:21:23Z",
+        "duration": "00:00:15.1760000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66decc32fb00f2ca6ffa353e",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-09-09T10:21:38.306Z",
+        "dateEnd": "2024-09-09T10:20:40Z",
+        "duration": "00:00:58.3060000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66decc32fb00f2ca6ffa353f",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Diego Morais",
+        "dateStart": "2024-09-09T10:21:38.431Z",
+        "dateEnd": "2024-09-09T10:20:54Z",
+        "duration": "00:00:44.4310000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371afb00f2ca6ffa35e3",
+        "department": "Diretoria",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:06.346Z",
+        "dateEnd": "2024-09-13T12:55:54Z",
+        "duration": "00:03:12.3460000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371afb00f2ca6ffa35e4",
+        "department": "Diretoria",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:06.712Z",
+        "dateEnd": "2024-09-13T12:55:42Z",
+        "duration": "00:03:24.7120000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371afb00f2ca6ffa35e5",
+        "department": "Copa",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:06.835Z",
+        "dateEnd": "2024-09-13T12:55:09Z",
+        "duration": "00:03:57.8350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371afb00f2ca6ffa35e6",
+        "department": "Corredores",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:06.957Z",
+        "dateEnd": "2024-09-13T12:56:02Z",
+        "duration": "00:03:04.9570000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371bfb00f2ca6ffa35e7",
+        "department": "Copa",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:07.1Z",
+        "dateEnd": "2024-09-13T12:55:24Z",
+        "duration": "00:03:43.1000000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e4371bfb00f2ca6ffa35e8",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T12:59:07.28Z",
+        "dateEnd": "2024-09-13T12:54:55Z",
+        "duration": "00:04:12.2800000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e43767fb00f2ca6ffa365a",
+        "department": "Banheiros lado direito",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T13:00:23.185Z",
+        "dateEnd": "2024-09-13T12:59:22Z",
+        "duration": "00:01:01.1850000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e43767fb00f2ca6ffa365b",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Raphael Conn",
+        "dateStart": "2024-09-13T13:00:23.306Z",
+        "dateEnd": "2024-09-13T12:59:28Z",
+        "duration": "00:00:55.3060000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e43c46fb00f2ca6ffa37bb",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Joana",
+        "dateStart": "2024-09-13T13:21:10.503Z",
+        "dateEnd": "2024-09-13T13:18:49Z",
+        "duration": "00:02:21.5030000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e43c46fb00f2ca6ffa37bc",
+        "department": "Copa",
+        "employee": "Maria Joana",
+        "dateStart": "2024-09-13T13:21:10.935Z",
+        "dateEnd": "2024-09-13T13:18:54Z",
+        "duration": "00:02:16.9350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "66e43c47fb00f2ca6ffa37bd",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Joana",
+        "dateStart": "2024-09-13T13:21:11.056Z",
+        "dateEnd": "2024-09-13T13:18:42Z",
+        "duration": "00:02:29.0560000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6706bbaec618f6e3a6fbcd6e",
+        "department": "Salão",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-10-09T17:21:50.469Z",
+        "dateEnd": "2024-10-09T17:19:56Z",
+        "duration": "00:01:54.4690000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6706bc2fc618f6e3a6fbce5f",
+        "department": "Diretoria",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-10-09T17:23:59.131Z",
+        "dateEnd": "2024-10-09T17:23:41Z",
+        "duration": "00:00:18.1310000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6706bc2fc618f6e3a6fbce60",
+        "department": "Copa",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-10-09T17:23:59.286Z",
+        "dateEnd": "2024-10-09T17:23:55Z",
+        "duration": "00:00:04.2860000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6706bc2fc618f6e3a6fbce61",
+        "department": "Departamento Financeiro",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-10-09T17:23:59.412Z",
+        "dateEnd": "2024-10-09T17:23:47Z",
+        "duration": "00:00:12.4120000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6723eca0f2651c90123fe747",
+        "department": "Departamento Financeiro",
+        "employee": "Teste Rapha",
+        "dateStart": "2024-10-31T20:46:24.664Z",
+        "dateEnd": "2024-10-31T20:46:07Z",
+        "duration": "00:00:17.6640000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6723eca1f2651c90123fe748",
+        "department": "Salão",
+        "employee": "Teste Rapha",
+        "dateStart": "2024-10-31T20:46:25.238Z",
+        "dateEnd": "2024-10-31T20:46:03Z",
+        "duration": "00:00:22.2380000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6723eca1f2651c90123fe749",
+        "department": "Corredores",
+        "employee": "Teste Rapha",
+        "dateStart": "2024-10-31T20:46:25.365Z",
+        "dateEnd": "2024-10-31T20:46:14Z",
+        "duration": "00:00:11.3650000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6723eca1f2651c90123fe74a",
+        "department": "Corredores",
+        "employee": "Teste Rapha",
+        "dateStart": "2024-10-31T20:46:25.488Z",
+        "dateEnd": "2024-10-31T20:45:59Z",
+        "duration": "00:00:26.4880000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673650acbc46626ae5226fac",
+        "department": "Diretoria",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-11-14T19:34:04.339Z",
+        "dateEnd": "2024-11-14T19:33:36Z",
+        "duration": "00:00:28.3390000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673650adbc46626ae5226fad",
+        "department": "Sala Reunião 1",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-11-14T19:34:05.182Z",
+        "dateEnd": "2024-11-14T19:33:42Z",
+        "duration": "00:00:23.1820000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673650adbc46626ae5226fae",
+        "department": "Banheiros lado direito",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-11-14T19:34:05.313Z",
+        "dateEnd": "2024-11-14T19:33:30Z",
+        "duration": "00:00:35.3130000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673650adbc46626ae5226faf",
+        "department": "Sala Reunião 1",
+        "employee": "Raphael Teste",
+        "dateStart": "2024-11-14T19:34:05.435Z",
+        "dateEnd": "2024-11-14T19:33:46Z",
+        "duration": "00:00:19.4350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67365106bc46626ae52270b7",
+        "department": "Copa",
+        "employee": "Teste Teste",
+        "dateStart": "2024-11-14T19:35:34.244Z",
+        "dateEnd": "2024-11-14T19:35:30Z",
+        "duration": "00:00:04.2440000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67365106bc46626ae52270b8",
+        "department": "Departamento Financeiro",
+        "employee": "Teste Teste",
+        "dateStart": "2024-11-14T19:35:34.367Z",
+        "dateEnd": "2024-11-14T19:35:26Z",
+        "duration": "00:00:08.3670000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67387e94bc46626ae52271c9",
+        "department": "Area Teste",
+        "employee": "diego morais",
+        "dateStart": "2024-11-16T11:14:28.364Z",
+        "dateEnd": "2024-11-16T11:08:09Z",
+        "duration": "00:06:19.3640000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67387ec1bc46626ae52271cd",
+        "department": "Area Teste",
+        "employee": "diego teste",
+        "dateStart": "2024-11-16T11:15:13.995Z",
+        "dateEnd": "2024-11-16T11:14:59Z",
+        "duration": "00:00:14.9950000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67387f2bbc46626ae52271d1",
+        "department": "Area Teste",
+        "employee": "diego teste",
+        "dateStart": "2024-11-16T11:16:59.858Z",
+        "dateEnd": "2024-11-16T11:16:54Z",
+        "duration": "00:00:05.8580000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6738809cbc46626ae52271db",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:08.621Z",
+        "dateEnd": "2024-11-16T11:22:11Z",
+        "duration": "00:00:57.6210000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6738809cbc46626ae52271dc",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:08.767Z",
+        "dateEnd": "2024-11-16T11:22:17Z",
+        "duration": "00:00:51.7670000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6738809cbc46626ae52271dd",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:08.89Z",
+        "dateEnd": "2024-11-16T11:22:26Z",
+        "duration": "00:00:42.8900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6738809dbc46626ae52271de",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:09.015Z",
+        "dateEnd": "2024-11-16T11:22:21Z",
+        "duration": "00:00:48.0150000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673880ccbc46626ae52271e7",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:56.19Z",
+        "dateEnd": "2024-11-16T11:23:49Z",
+        "duration": "00:00:07.1900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673880ccbc46626ae52271e8",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:56.323Z",
+        "dateEnd": "2024-11-16T11:23:43Z",
+        "duration": "00:00:13.3230000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673880ccbc46626ae52271e9",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:56.448Z",
+        "dateEnd": "2024-11-16T11:23:52Z",
+        "duration": "00:00:04.4480000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673880ccbc46626ae52271ea",
+        "department": "Area Teste",
+        "employee": "adfasdf asdfa",
+        "dateStart": "2024-11-16T11:23:56.573Z",
+        "dateEnd": "2024-11-16T11:23:46Z",
+        "duration": "00:00:10.5730000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673885e5bc46626ae5227206",
+        "department": "Area Teste",
+        "employee": "fasdfasdf asdfasdf",
+        "dateStart": "2024-11-16T11:45:41.545Z",
+        "dateEnd": "2024-11-16T11:45:11Z",
+        "duration": "00:00:30.5450000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673890babc46626ae5227210",
+        "department": "Area Teste",
+        "employee": "Fulano Silva",
+        "dateStart": "2024-11-16T12:31:54.737Z",
+        "dateEnd": "2024-11-16T12:31:44Z",
+        "duration": "00:00:10.7370000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67389483bc46626ae522729e",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T12:48:03.407Z",
+        "dateEnd": "2024-11-16T12:42:55Z",
+        "duration": "00:05:08.4070000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67389504bc46626ae522729f",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T12:50:12.576Z",
+        "dateEnd": "2024-11-16T12:49:26Z",
+        "duration": "00:00:46.5760000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67389782bc46626ae52272a0",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T13:00:50.825Z",
+        "dateEnd": "2024-11-16T12:57:49Z",
+        "duration": "00:03:01.8250000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673899ebbc46626ae52272a1",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T13:11:07.235Z",
+        "dateEnd": "2024-11-16T13:10:54Z",
+        "duration": "00:00:13.2350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673899ecbc46626ae52272a2",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T13:11:08.032Z",
+        "dateEnd": "2024-11-16T13:11:01Z",
+        "duration": "00:00:07.0320000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673899ecbc46626ae52272a3",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T13:11:08.156Z",
+        "dateEnd": "2024-11-16T13:10:57Z",
+        "duration": "00:00:11.1560000",
+        "status": "Pendente"
+    },
+    {
+        "id": "67389a15bc46626ae52272a4",
+        "department": "Area Teste",
+        "employee": "Fulando Silva",
+        "dateStart": "2024-11-16T13:11:49.99Z",
+        "dateEnd": "2024-11-16T13:11:24Z",
+        "duration": "00:00:25.9900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673abcc5bc46626ae5227440",
+        "department": "Copa",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-18T04:04:21.285Z",
+        "dateEnd": "2024-11-18T04:03:42Z",
+        "duration": "00:00:39.2850000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673abdb9bc46626ae5227674",
+        "department": "Diretoria",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-18T04:08:25.636Z",
+        "dateEnd": "2024-11-18T04:07:26Z",
+        "duration": "00:00:59.6360000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673abdb9bc46626ae5227675",
+        "department": "Diretoria",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-18T04:08:25.781Z",
+        "dateEnd": "2024-11-18T04:07:55Z",
+        "duration": "00:00:30.7810000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673abdb9bc46626ae5227676",
+        "department": "Banheiros lado direito",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-18T04:08:25.904Z",
+        "dateEnd": "2024-11-18T04:08:12Z",
+        "duration": "00:00:13.9040000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c87f9bc46626ae52278ea",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:43:37.592Z",
+        "dateEnd": "2024-11-19T12:42:03Z",
+        "duration": "00:01:34.5920000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c87f9bc46626ae52278eb",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:43:37.758Z",
+        "dateEnd": "2024-11-19T12:42:20Z",
+        "duration": "00:01:17.7580000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c87f9bc46626ae52278ec",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:43:37.878Z",
+        "dateEnd": "2024-11-19T12:42:08Z",
+        "duration": "00:01:29.8780000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c87f9bc46626ae52278ed",
+        "department": "Salão",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:43:37.999Z",
+        "dateEnd": "2024-11-19T12:42:15Z",
+        "duration": "00:01:22.9990000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8927bc46626ae5227910",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:48:39.719Z",
+        "dateEnd": "2024-11-19T12:48:13Z",
+        "duration": "00:00:26.7190000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8927bc46626ae5227911",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:48:39.849Z",
+        "dateEnd": "2024-11-19T12:48:34Z",
+        "duration": "00:00:05.8490000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8927bc46626ae5227912",
+        "department": "Departamento Financeiro",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:48:39.97Z",
+        "dateEnd": "2024-11-19T12:48:19Z",
+        "duration": "00:00:20.9700000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8928bc46626ae5227913",
+        "department": "Salão",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T12:48:40.091Z",
+        "dateEnd": "2024-11-19T12:48:25Z",
+        "duration": "00:00:15.0910000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8e2dbc46626ae5227929",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:10:05.746Z",
+        "dateEnd": "2024-11-19T13:10:02Z",
+        "duration": "00:00:03.7460000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8e5bbc46626ae522792a",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:10:51.269Z",
+        "dateEnd": "2024-11-19T13:10:43Z",
+        "duration": "00:00:08.2690000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c8e5bbc46626ae522792b",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:10:51.39Z",
+        "dateEnd": "2024-11-19T13:10:21Z",
+        "duration": "00:00:30.3900000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c925bbc46626ae52279be",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:27:55.275Z",
+        "dateEnd": "2024-11-19T13:27:10Z",
+        "duration": "00:00:45.2750000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c925cbc46626ae52279bf",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:27:56.364Z",
+        "dateEnd": "2024-11-19T13:27:47Z",
+        "duration": "00:00:09.3640000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c925cbc46626ae52279c0",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:27:56.489Z",
+        "dateEnd": "2024-11-19T13:27:39Z",
+        "duration": "00:00:17.4890000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c92a3bc46626ae5227a56",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:29:07.573Z",
+        "dateEnd": "2024-11-19T13:28:22Z",
+        "duration": "00:00:45.5730000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c92a3bc46626ae5227a57",
+        "department": "Corredores",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:29:07.699Z",
+        "dateEnd": "2024-11-19T13:29:00Z",
+        "duration": "00:00:07.6990000",
+        "status": "Pendente"
+    },
+    {
+        "id": "673c92a3bc46626ae5227a58",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Maria Teste",
+        "dateStart": "2024-11-19T13:29:07.819Z",
+        "dateEnd": "2024-11-19T13:28:43Z",
+        "duration": "00:00:24.8190000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745378ebc46626ae5227da2",
+        "department": "Sala Reunião 3",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-26T02:50:54.882Z",
+        "dateEnd": "2024-11-26T01:50:02Z",
+        "duration": "01:00:52.8820000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745378fbc46626ae5227da3",
+        "department": "Banheiro Masculino",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-26T02:50:55.079Z",
+        "dateEnd": "2024-11-26T01:49:55Z",
+        "duration": "01:01:00.0790000",
+        "status": "Pendente"
+    },
+    {
+        "id": "674537bdbc46626ae5227e3e",
+        "department": "Banheiros lado esquerdo",
+        "employee": "Dimas Garcia",
+        "dateStart": "2024-11-26T02:51:41.2Z",
+        "dateEnd": "2024-11-26T01:50:38Z",
+        "duration": "01:01:03.2000000",
+        "status": "Pendente"
+    },
+    {
+        "id": "674537fdbc46626ae5227eda",
+        "department": "Sala Reunião 2",
+        "employee": "Dimas2 Garcia",
+        "dateStart": "2024-11-26T02:52:45.036Z",
+        "dateEnd": "2024-11-26T01:51:55Z",
+        "duration": "01:00:50.0360000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9dbc46626ae5227f8f",
+        "department": "Corredores",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:09.149Z",
+        "dateEnd": "2024-11-26T13:29:23Z",
+        "duration": "00:01:46.1490000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9ebc46626ae5227f90",
+        "department": "Corredores",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:10.042Z",
+        "dateEnd": "2024-11-26T13:29:28Z",
+        "duration": "00:01:42.0420000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9ebc46626ae5227f91",
+        "department": "Diretoria",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:10.172Z",
+        "dateEnd": "2024-11-26T13:29:34Z",
+        "duration": "00:01:36.1720000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9ebc46626ae5227f92",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:10.295Z",
+        "dateEnd": "2024-11-26T13:30:10Z",
+        "duration": "00:01:00.2950000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9ebc46626ae5227f93",
+        "department": "Corredores",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:10.415Z",
+        "dateEnd": "2024-11-26T13:30:01Z",
+        "duration": "00:01:09.4150000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cd9ebc46626ae5227f94",
+        "department": "Salão",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:10.536Z",
+        "dateEnd": "2024-11-26T13:30:18Z",
+        "duration": "00:00:52.5360000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745cdb2bc46626ae5227fb0",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:31:30.335Z",
+        "dateEnd": "2024-11-26T13:31:24Z",
+        "duration": "00:00:06.3350000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745ce04bc46626ae5228069",
+        "department": "Hall Elevadores / Recepção",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:32:52.094Z",
+        "dateEnd": "2024-11-26T13:32:46Z",
+        "duration": "00:00:06.0940000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745ce04bc46626ae522806a",
+        "department": "Departamento Financeiro",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:32:52.216Z",
+        "dateEnd": "2024-11-26T13:32:20Z",
+        "duration": "00:00:32.2160000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745ce04bc46626ae522806b",
+        "department": "Departamento Financeiro",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:32:52.337Z",
+        "dateEnd": "2024-11-26T13:32:40Z",
+        "duration": "00:00:12.3370000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745ce04bc46626ae522806c",
+        "department": "Departamento Financeiro",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:32:52.46Z",
+        "dateEnd": "2024-11-26T13:32:31Z",
+        "duration": "00:00:21.4600000",
+        "status": "Pendente"
+    },
+    {
+        "id": "6745ce04bc46626ae522806d",
+        "department": "Salão",
+        "employee": "Rapha Teste",
+        "dateStart": "2024-11-26T13:32:52.582Z",
+        "dateEnd": "2024-11-26T13:32:25Z",
+        "duration": "00:00:27.5820000",
+        "status": "Pendente"
+    }
+]
