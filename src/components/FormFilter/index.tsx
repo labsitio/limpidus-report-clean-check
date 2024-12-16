@@ -138,7 +138,7 @@ const FormFilter: FC<IFormFilterProps> = ({
                 <Option
                   key={index}
                   value={value}
-                  selected={fields.status === value}
+                  defaultValue={''}
                 >
                   {label}
                 </Option>

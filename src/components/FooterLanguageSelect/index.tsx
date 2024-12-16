@@ -84,9 +84,10 @@ const FooterLanguageSelect: React.FC = () => {
     handleSelectLanguage(language);
   }, []);
 
-  const handleLocale = (locale: Locale) => {
+  const handleLocale = (locale: Locale, key: any) => {
     return (
       <S.Language
+        key={key}
         onClick={() => {
           handleSelectLanguage(locale);
         }}
@@ -98,7 +99,7 @@ const FooterLanguageSelect: React.FC = () => {
 
   return (
     <S.FooterLanguageSelect>
-      <S.Languages>{locales.map(locale => handleLocale(locale))}</S.Languages>
+      <S.Languages>{locales.map((locale, index) => handleLocale(locale, index))}</S.Languages>
       <S.Resize>
         <S.Less onClick={decrement}>-</S.Less>
         <S.A>A</S.A>
