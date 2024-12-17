@@ -5,12 +5,7 @@
       "allowedOrigins": ["*"]
     },
     {
-      "route": "/",
-      "serve": "/index.html",
-      "statusCode": 200
-    },
-    {
-      "route": "/:path*",
+      "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
     }
