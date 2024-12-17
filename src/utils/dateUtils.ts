@@ -16,7 +16,7 @@ export function dateUtils() {
   };
 
   const getExtenseHour = (initialDate: Date) => {
-    return `${formatHourAndMinute(initialDate.getHours())}:${formatHourAndMinute(initialDate.getMinutes())}`;
+    return `${formatHourAndMinute(initialDate.getHours())}:${formatHourAndMinute(initialDate.getMinutes())}:${formatHourAndMinute(initialDate.getSeconds())}`;
   };
   return { getFormatDay, getFormatMonth, getExtenseHour };
 }
