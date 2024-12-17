@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const newAPI = axios.create({
-  baseURL: 'http://limpdus-report-clean-check-back-chckb8cadmh2djcd.eastus-01.azurewebsites.net/v1/',
+  baseURL: 'https://limpdus-report-clean-check-back-chckb8cadmh2djcd.eastus-01.azurewebsites.net/v1/',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
