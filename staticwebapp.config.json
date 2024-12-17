@@ -3,6 +3,10 @@
     {
       "route": "/api/*",
       "allowedOrigins": ["*"]
+    },
+    {
+      "route": "/*",
+      "rewrite": "/index.html"
     }
   ]
 }
