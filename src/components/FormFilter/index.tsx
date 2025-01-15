@@ -22,6 +22,7 @@ import { useHistory } from 'react-router-dom';
 import { Combo, Input, Option } from './styles';
 
 export interface IFormFilterResolve {
+  project: { name: string; id: number };
   initialDate: string;
   finishDate: string;
   department: string;
@@ -47,6 +48,7 @@ const FormFilter: FC<IFormFilterProps> = ({
   onSubmit,
   setFormFieldsState = () => {},
   formFieldsState = {
+    project: { name: '', id: 0 },
     initialDate: new Date().toISOString().split('T')[0],
     finishDate: new Date().toISOString().split('T')[0],
     department: '',
@@ -59,9 +61,9 @@ const FormFilter: FC<IFormFilterProps> = ({
   const history = useHistory();
   const menuRef = useRef<HTMLInputElement>();
   const { t } = useTranslation();
+  const { idProjeto, nome } = ProjectService.getCurrentProjectLocal();
 
   function handleSubmit() {
-    console.log('fields', fields);
     onSubmit(fields);
   }
   function handleChangeFields(fieldName: string, value: string) {
@@ -89,6 +91,21 @@ const FormFilter: FC<IFormFilterProps> = ({
       </Header>
       <Content>
         <Form onSubmit={() => handleSubmit()}>
+          <Row flexColumn>
+            <Combo
+              name="project"
+              placeholder="Projeto"
+              value={idProjeto}
+              disabled={true}
+            >
+                <Option
+                  value={idProjeto}
+                  defaultValue={idProjeto}
+                >
+                  {nome}
+                </Option>
+            </Combo>
+          </Row>
           <Row flexColumn>
             <Row justifySpaceBetween>
               <Input

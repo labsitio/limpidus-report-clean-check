@@ -18,13 +18,12 @@ const Route: React.FC<RouteProps> = ({ component: Component, ...rest }) => {
         return !ProjectService.getCurrentProjectLocal() ? (
           <Component />
         ) : (
-          <Component />
-          // <Redirect
-          //   to={{
-          //     pathname: '/dashboard',
-          //     state: { from: location },
-          //   }}
-          // />
+          <Redirect
+            to={{
+              pathname: '/history',
+              state: { from: location },
+            }}
+          />
         );
       }}
     />

@@ -21,6 +21,7 @@ import DateFormater from '../../components/DateFormater';
 import { dateUtils } from '../../utils/dateUtils';
 import { IFormFilterResolve } from '../../components/FormFilter';
 import { useData } from '../../hooks/data';
+import { getCurrentProjectLocal } from '../../services/projectService';
 
 const today = new Date();
 
@@ -29,6 +30,7 @@ const History: FC = () => {
   const [sort, setSort] = useState<string>('ASC');
   const [sortField, setSortField] = useState<string>('');
   const [formFieldsState, setFormFieldsState] = useState<IFormFilterResolve>({
+    project: {name:'', id: 0},
     initialDate: new Date(
       today.getFullYear(),
       today.getMonth() - 3,
@@ -45,7 +47,7 @@ const History: FC = () => {
   const { loader, toggleLoader } = useLoader();
   const { t } = useTranslation();
   const { getFormatDay, getFormatMonth, getExtenseHour } = dateUtils();
-  const { user } = useData();
+  const { idProjeto, nome } = getCurrentProjectLocal();
 
   function handleSort(fieldName: string) {
     setSortField(fieldName);
@@ -90,7 +92,7 @@ const History: FC = () => {
 
   const handleOnExport = () => {
     toggleLoader(true);
-    exportHistory(4698, {
+    exportHistory(idProjeto, {
       DateEnd: new Date(formFieldsState.finishDate),
       DateStart: new Date(formFieldsState.initialDate),
       Department: formFieldsState.department,
@@ -99,24 +101,28 @@ const History: FC = () => {
         formFieldsState.status === ''
           ? null
           : formFieldsState.status === 'true',
-    }).then((response) =>{
-      
-      const href = URL.createObjectURL(response.data);
+    })
+      .then(response => {
+        const href = URL.createObjectURL(response.data);
 
-      const link = document.createElement('a');
-      link.href = href;
-      link.setAttribute('download', new Date().toISOString().split('T')[0] + '_history.xlsx'); 
-      document.body.appendChild(link);
-      link.click();
+        const link = document.createElement('a');
+        link.href = href;
+        link.setAttribute(
+          'download',
+          new Date().toISOString().split('T')[0] + '_history.xlsx',
+        );
+        document.body.appendChild(link);
+        link.click();
 
-      document.body.removeChild(link);
-      URL.revokeObjectURL(href);
-    }).finally(() => toggleLoader(false));
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
+      })
+      .finally(() => toggleLoader(false));
   };
 
   const getHistoryItems = (params?: any) => {
     toggleLoader(true);
-    getHistory(4698, {
+    getHistory(idProjeto, {
       DateEnd: new Date(formFieldsState.finishDate),
       DateStart: new Date(formFieldsState.initialDate),
       Department: formFieldsState.department,
@@ -143,6 +149,10 @@ const History: FC = () => {
   useEffect(() => {
     changeSort();
   }, [sort]);
+
+  useEffect(() => {
+    setFormFieldsState({...formFieldsState, project: {name: nome , id: idProjeto}});
+  }, [idProjeto]);
 
   return (
     <>
