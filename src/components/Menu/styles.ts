@@ -30,6 +30,17 @@ export const Container = styled.div<ContainerProps>`
     `}
   z-index: 999;
   overflow: hidden;
+
+  &.desktop {
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Header = styled.div`
@@ -113,8 +124,24 @@ export const ButtonExit = styled(Button)`
   background-color: ${colors.white};
   color: ${colors.blue};
   font-weight: normal;
+
+  &.desktop {
+    color: ${colors.white};
+    background-color: ${colors.blue};
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    &svg {
+      margin-right: 5px;
+    }
+  }
 `;
 
 export const IconExit = styled.img`
   margin-right: 5px;
+  &.desktop {
+   color: ${colors.white};
+  }
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { colors } from '../../styles';
+import Button from '../Button';
 
 export const Container = styled.div`
   height: 95vh;
@@ -23,6 +24,10 @@ export const Content = styled.div`
   ${media.lessThan('medium')`
     width: 90%;
   `}
+
+  &.desktop{
+    margin-right:500px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -38,3 +43,8 @@ export const MessageItemNotFound = styled.h1`
   font-weight: 500;
   align-self: center;
 `;
+
+export const ButtonFilter = styled(Button)`
+    width:50px;
+    fontsize: 1.5rem;
+`

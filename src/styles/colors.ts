@@ -3,7 +3,7 @@ import { rgba } from 'polished';
 export default {
   white: '#ffffff',
   blueLight: '#66BFE6',
-  blue: '#449DC1',
+  blue: '#0099ff',
   gray: '#828282',
   grayLight: '#C8DEEC',
   grayLighter: rgba(200, 222, 236, 0.7),

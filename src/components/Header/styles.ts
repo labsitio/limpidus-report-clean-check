@@ -41,3 +41,8 @@ export const GroupButton = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
+export const TextExit = styled.p`
+  color: ${colors.white};
+  margin-left: 0.5rem;
+  `

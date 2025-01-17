@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import * as ProjectService from '../../services/projectService';
 import { useHistory } from 'react-router-dom';
 import { Combo, Input, Option } from './styles';
+import useDeviceDimensions from '../../hooks/useDevice';
 
 export interface IFormFilterResolve {
   project: { name: string; id: number };
@@ -31,7 +32,8 @@ export interface IFormFilterResolve {
 }
 interface IFormFilterProps {
   opened: boolean;
-  handleClose: () => void;
+  isDesktop: boolean;
+  handleClose?: () => void;
   formFieldsState?: IFormFilterResolve;
   onSubmit: (fields: IFormFilterResolve) => void;
   setFormFieldsState?: (fields: IFormFilterResolve) => void;
@@ -47,6 +49,7 @@ const FormFilter: FC<IFormFilterProps> = ({
   handleClose,
   onSubmit,
   setFormFieldsState = () => {},
+  isDesktop = false,
   formFieldsState = {
     project: { name: '', id: 0 },
     initialDate: new Date().toISOString().split('T')[0],
@@ -82,9 +85,11 @@ const FormFilter: FC<IFormFilterProps> = ({
   return (
     <Container ref={menuRef} opened={opened}>
       <Header>
-        <ButtonIcon onClick={handleClose}>
-          <IconClose src={MenuIcon} />
-        </ButtonIcon>
+        {handleClose && (
+          <ButtonIcon onClick={handleClose}>
+            <IconClose src={MenuIcon} />
+          </ButtonIcon>
+        )}
         <S.Title>
           <Translator path="filter.title" />
         </S.Title>
@@ -98,12 +103,9 @@ const FormFilter: FC<IFormFilterProps> = ({
               value={idProjeto}
               disabled={true}
             >
-                <Option
-                  value={idProjeto}
-                  defaultValue={idProjeto}
-                >
-                  {nome}
-                </Option>
+              <Option value={idProjeto} defaultValue={idProjeto}>
+                {nome}
+              </Option>
             </Combo>
           </Row>
           <Row flexColumn>
@@ -152,11 +154,7 @@ const FormFilter: FC<IFormFilterProps> = ({
               onChange={e => handleChangeFields('status', e.target.value)}
             >
               {statusFilterOptions.map(({ value, label }, index) => (
-                <Option
-                  key={index}
-                  value={value}
-                  defaultValue={''}
-                >
+                <Option key={index} value={value} defaultValue={''}>
                   {label}
                 </Option>
               ))}
@@ -167,10 +165,12 @@ const FormFilter: FC<IFormFilterProps> = ({
           <Button onClick={() => handleSubmit()}>
             <Translator path="filter.filter" />
           </Button>
-          <ButtonExit onClick={handleExit}>
-            <IE src={IconExit} alt="icon sair" />{' '}
-            <Translator path="filter.exit" />
-          </ButtonExit>
+          {!isDesktop && (
+            <ButtonExit onClick={handleExit}>
+              <IE src={IconExit} alt="icon sair" />{' '}
+              <Translator path="filter.exit" />
+            </ButtonExit>
+          )}
         </Buttons>
       </Content>
     </Container>
