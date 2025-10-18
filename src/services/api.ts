@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURLV1 = process.env.NODE_ENV === "development" ? 'http://localhost:5017/v1/' :'https://limpdus-report-clean-check-back-chckb8cadmh2djcd.eastus-01.azurewebsites.net/v1/';
+const baseURLV1 = process.env.NODE_ENV !== "development" ? 'http://localhost:5017/v1/' :'https://limpdus-report-clean-check-back-chckb8cadmh2djcd.eastus-01.azurewebsites.net/v1/';
 
 const api = axios.create({
   baseURL: 'https://limpidus-api-homol.azurewebsites.net/api',
