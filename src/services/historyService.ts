@@ -7,10 +7,12 @@ import { IHistory } from '../interfaces';
 export default function historyService() {
   function getHistory(idProjeto: number, query?: IHistoryRequest) {
     return newAPI.get<{
-      data: Array<IHistory>;
+      data: {
+        departments: Array<string>;
+        employees: Array<string>;
+        data: Array<IHistory>;
+      };
       success: boolean;
-      departments: Array<string>;
-      employees: Array<string>;
     }>(`/history/legacyProjectId/${idProjeto}`, {
       params: query,
     });
