@@ -40,6 +40,7 @@ const SignIn: React.FC = () => {
   });
 
   const onSubmit = async (form: FormValues) => {
+    toggleLoader(true);
     try {
       const { data } = await ProjectService.getProject(
         form.username,
@@ -51,6 +52,7 @@ const SignIn: React.FC = () => {
       updateUser(data.data);
       history.push('/');
     } catch (error) {
+      toggleLoader(false);
       toast.error('Usuário não encontrado');
     }
   };
@@ -83,7 +85,7 @@ const SignIn: React.FC = () => {
                 placeholder={t('signIn.password')}
                 errors={errors}
               />
-              <Button loading={loader} onClick={() => toggleLoader(true)} type="submit">
+              <Button loading={loader} type="submit">
                 <Translator path="signIn.enter" />
               </Button>
             </S.Form>
