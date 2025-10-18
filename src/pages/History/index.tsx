@@ -150,7 +150,7 @@ const History: FC = () => {
     })
       .then(arr => {
         console.log('arr', arr);
-        const { data, employees, departments } = arr.data.data;
+        const { employees, departments, data = [] } = arr.data.data;
         setHistory(data);
         if (data.length) {
           if (departments.length > 1) setDepartments(['Selecione', ...departments]);
