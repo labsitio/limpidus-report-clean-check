@@ -1,33 +1,24 @@
+
 import React from 'react';
-import {
-  Route as ReactDOMRoute,
-  RouteProps as ReactDOMRouteProps,
-  Redirect,
-} from 'react-router-dom';
+import { Route as ReactDOMRoute, Redirect, RouteProps } from 'react-router-dom';
 import * as ProjectService from '../services/projectService';
 
-interface RouteProps extends ReactDOMRouteProps {
-  component: React.ComponentType;
-}
+const PrivateRoute: React.FC<RouteProps & { component: React.ComponentType<any> }> = ({ component: Component, ...rest }) => (
+  <ReactDOMRoute
+    {...rest}
+    render={props =>
+      ProjectService.getCurrentProjectLocal() ? (
+        React.createElement(Component, props)
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: props.location },
+          }}
+        />
+      )
+    }
+  />
+);
 
-const Route: React.FC<RouteProps> = ({ component: Component, ...rest }) => {
-  return (
-    <ReactDOMRoute
-      {...rest}
-      render={({ location }) => {
-        return ProjectService.getCurrentProjectLocal() ? (
-          <Component />
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: location },
-            }}
-          />
-        );
-      }}
-    />
-  );
-};
-
-export default Route;
+export default PrivateRoute;

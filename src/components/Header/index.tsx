@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './styles';
 import LogoCleanCheck from '../../assets/cleanCheckLogo.svg';
-import MenuIcon from '../../assets/menuIcon.svg';
+import { VscFilter } from 'react-icons/vsc';
 import FormFilter from '../FormFilter';
 import { FaDownload } from 'react-icons/fa';
 import useDeviceDimensions from '../../hooks/useDevice';
@@ -16,9 +16,12 @@ const Header = (props: any) => {
     onSubmit = () => {},
     formFieldsState = {},
     setFormFieldsState = () => {},
+    handleOpen = () => {},
     buttonExport = false,
     onExport = () => {},
     isDesktop = false,
+    employees = [],
+    departments = [],
   } = props;
   const [opened, setOpened] = useState<boolean>(true);
   const [closeChange, setCloseChange] = useState<boolean>(false);
@@ -48,16 +51,16 @@ const Header = (props: any) => {
               Exportar
             </S.ButtonExport>
           )}
-          {!isDesktop && (
-            <S.MenuButton onClick={() => setOpened(true)}>
-              <S.MenuButtonImage src={MenuIcon} alt="Icone de menu" />
-            </S.MenuButton>
-          )}
+          <S.MenuButton onClick={() => handleOpen()}>
+            <VscFilter />
+          </S.MenuButton>
 
           {isDesktop && (
             <ButtonExit className="desktop" onClick={handleExit}>
               <FiLogOut />
-              <S.TextExit><Translator path="filter.exit" /></S.TextExit>
+              <S.TextExit>
+                <Translator path="filter.exit" />
+              </S.TextExit>
             </ButtonExit>
           )}
         </S.GroupButton>
@@ -69,6 +72,8 @@ const Header = (props: any) => {
             formFieldsState={formFieldsState}
             setFormFieldsState={setFormFieldsState}
             isDesktop={isDesktop}
+            employees={employees}
+            departments={departments}
           />
         )}
       </S.Container>

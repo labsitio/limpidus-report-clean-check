@@ -81,5 +81,8 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "prettier": "^3.4.2"
+  },
+  "resolutions": {
+    "@types/react": "~18.2.45"
   }
 }

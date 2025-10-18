@@ -6,21 +6,20 @@ import { IHistory } from '../interfaces';
 
 export default function historyService() {
   function getHistory(idProjeto: number, query?: IHistoryRequest) {
-    return newAPI.get<{ data: Array<IHistory>; success: boolean }>(
-      `/history/legacyProjectId/${idProjeto}`,
-      {
-        params: query,
-      },
-    );
+    return newAPI.get<{
+      data: Array<IHistory>;
+      success: boolean;
+      departments: Array<string>;
+      employees: Array<string>;
+    }>(`/history/legacyProjectId/${idProjeto}`, {
+      params: query,
+    });
   }
   function exportHistory(idProjeto: number, query?: IHistoryRequest) {
-    return newAPI.get(
-      `/history/export/legacyProjectId/${idProjeto}`,
-      {
-        params: query,
-        responseType: 'blob',
-      },
-    );
+    return newAPI.get(`/history/export/legacyProjectId/${idProjeto}`, {
+      params: query,
+      responseType: 'blob',
+    });
   }
 
   return {

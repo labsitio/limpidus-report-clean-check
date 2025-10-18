@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import "react-datepicker/dist/react-datepicker.css";
+require("react-datepicker/dist/react-datepicker.css");
+import { MdClose } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import * as S from "./styles";
-import MenuIcon from "../../assets/menuIconBlue.svg";
 import IconExit from "../../assets/iconExit.svg";
 import Select from "../Select";
 import Translator from "../Translator";
@@ -222,12 +222,12 @@ const Menu: React.FC<MenuProps> = ({ opened, handleClose }) => {
   return (
     <S.Container ref={menuRef} opened={opened}>
       <S.Header>
-        <S.ButtonIcon onClick={handleClose}>
-          <S.IconClose src={MenuIcon} />
-        </S.ButtonIcon>
         <S.Title>
           <Translator path="filter.title" />
         </S.Title>
+        <S.ButtonIcon onClick={handleClose}>
+          <MdClose />
+        </S.ButtonIcon>
       </S.Header>
       <S.Content>
         <S.Form onSubmit={handleSubmit(onSubmit)}>

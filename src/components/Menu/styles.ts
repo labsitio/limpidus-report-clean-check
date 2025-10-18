@@ -12,12 +12,11 @@ export const Container = styled.div<ContainerProps>`
   width: 0px;
   right: 0px;
   position: absolute;
-  height: 100vh;
+  height: 580px;
   background-color: ${colors.white};
   box-shadow: -2px 0px 20px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
   display: flex;
-  height: 100%;
   transition: 200ms;
   flex-direction: column;
   ${props =>
@@ -45,8 +44,10 @@ export const Container = styled.div<ContainerProps>`
 
 export const Header = styled.div`
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   padding: 1rem;
-  flex-direction: column;
+  margin-bottom: 10px;
 `;
 
 export const Content = styled.div`
@@ -61,7 +62,6 @@ export const Title = styled.span`
   color: ${colors.blue};
   font-size: 1.5rem;
   align-self: center;
-  margin-bottom: 3rem;
 `;
 
 export const ButtonIcon = styled.button`
@@ -69,10 +69,17 @@ export const ButtonIcon = styled.button`
   width: 40px;
   height: 40px;
   background-color: ${colors.white};
-`;
-
-export const IconClose = styled.img`
   color: ${colors.blue};
+  border-radius: 5px;
+  border: 1px solid ${colors.blue};
+  font-size: 1.5rem;
+  display: flex;
+  align-self: center;
+
+  svg{
+    margin:0 auto;
+    align-self:center
+  }
 `;
 
 export const Form = styled.form`
@@ -122,8 +129,19 @@ export const Button = styled.button`
 
 export const ButtonExit = styled(Button)`
   background-color: ${colors.white};
+  border: 1px solid ${colors.white};
   color: ${colors.blue};
   font-weight: normal;
+  margin: 0 15px;
+  margin-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  align-self: center;
+  height: auto !important;
+  padding:5px;  
 
   &.desktop {
     color: ${colors.white};
@@ -134,6 +152,7 @@ export const ButtonExit = styled(Button)`
     align-self: center;
     align-items: center;
     &svg {
+    display:none;
       margin-right: 5px;
     }
   }

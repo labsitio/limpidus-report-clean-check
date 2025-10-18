@@ -10,17 +10,16 @@ import {
   Content,
   Form,
   Header,
-  IconClose,
-  IconExit as IE,
   Row,
 } from '../Menu/styles';
 import IconExit from '../../assets/iconExit.svg';
 import MenuIcon from '../../assets/menuIconBlue.svg';
-import { useTranslation } from 'react-i18next';
+import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import * as ProjectService from '../../services/projectService';
 import { useHistory } from 'react-router-dom';
 import { Combo, Input, Option } from './styles';
 import useDeviceDimensions from '../../hooks/useDevice';
+import { MdClose } from 'react-icons/md';
 
 export interface IFormFilterResolve {
   project: { name: string; id: number };
@@ -37,6 +36,8 @@ interface IFormFilterProps {
   formFieldsState?: IFormFilterResolve;
   onSubmit: (fields: IFormFilterResolve) => void;
   setFormFieldsState?: (fields: IFormFilterResolve) => void;
+  employees?: Array<string>;
+  departments?: Array<string>;
 }
 
 const statusFilterOptions = [
@@ -56,8 +57,10 @@ const FormFilter: FC<IFormFilterProps> = ({
     finishDate: new Date().toISOString().split('T')[0],
     department: '',
     employee: '',
-    status: '',
+    status: ''
   },
+  employees = [],
+  departments = [],
   ...props
 }) => {
   const [fields, setFields] = useState(formFieldsState);
@@ -65,7 +68,6 @@ const FormFilter: FC<IFormFilterProps> = ({
   const menuRef = useRef<HTMLInputElement>();
   const { t } = useTranslation();
   const { idProjeto, nome } = ProjectService.getCurrentProjectLocal();
-
   function handleSubmit() {
     onSubmit(fields);
   }
@@ -85,14 +87,14 @@ const FormFilter: FC<IFormFilterProps> = ({
   return (
     <Container ref={menuRef} opened={opened}>
       <Header>
-        {handleClose && (
-          <ButtonIcon onClick={handleClose}>
-            <IconClose src={MenuIcon} />
-          </ButtonIcon>
-        )}
         <S.Title>
           <Translator path="filter.title" />
         </S.Title>
+        {handleClose && (
+          <ButtonIcon onClick={handleClose}>
+            <MdClose />
+          </ButtonIcon>
+        )}
       </Header>
       <Content>
         <Form onSubmit={() => handleSubmit()}>
@@ -129,22 +131,52 @@ const FormFilter: FC<IFormFilterProps> = ({
             </Row>
           </Row>
           <Row flexColumn>
-            <Input
-              type="text"
-              onChange={e => handleChangeFields('department', e.target.value)}
-              name="department"
-              placeholder={t('filter.department')}
-              value={fields.department}
-            />
+            {departments.length ? (
+              <Combo
+                name="department"
+                placeholder="Departamento"
+                value={fields.department}
+                onChange={e => handleChangeFields('department', e.target.value)}
+              >
+                {departments.map((department: string, index: number) => (
+                  <Option key={`department-${index}`} value={index !==0 ? department : ''}>
+                    {department}
+                  </Option>
+                ))}
+              </Combo>
+            ) : (
+              <Input
+                type="text"
+                onChange={e => handleChangeFields('department', e.target.value)}
+                name="department"
+                placeholder={t('filter.department')}
+                value={fields.department}
+              />
+            )}
           </Row>
           <Row flexColumn>
-            <Input
-              type="text"
-              onChange={e => handleChangeFields('employee', e.target.value)}
-              name="employee"
-              placeholder={t('filter.employee')}
-              value={fields.employee}
-            />
+            {employees.length ? (
+              <Combo
+                name="employee"
+                placeholder="Funcionário"
+                value={fields.employee}
+                onChange={e => handleChangeFields('employee', e.target.value)}
+              >
+                {employees.map((employee: string, index: number) => (
+                  <Option key={`employee-${index}`} value={index !== 0 ? employee : ''}>
+                    {employee}
+                  </Option>
+                ))}
+              </Combo>
+            ) : (
+              <Input
+                type="text"
+                onChange={e => handleChangeFields('employee', e.target.value)}
+                name="employee"
+                placeholder={t('filter.employee')}
+                value={fields.employee}
+              />
+            )}
           </Row>
           <Row flexColumn>
             <Combo
@@ -167,7 +199,7 @@ const FormFilter: FC<IFormFilterProps> = ({
           </Button>
           {!isDesktop && (
             <ButtonExit onClick={handleExit}>
-              <IE src={IconExit} alt="icon sair" />{' '}
+              <MdClose />
               <Translator path="filter.exit" />
             </ButtonExit>
           )}

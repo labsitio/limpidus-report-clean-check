@@ -15,8 +15,17 @@ export const Container = styled.div`
 export const Logo = styled.img``;
 
 export const MenuButton = styled.button`
-  border: none;
+  margin: 0 15px;
+  border: 1px solid ${colors.white};
+  color: ${colors.white};
+  border-radius: 5px;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  display: flex;
+  margin-right: 0;
+  font-size: 20px;
 `;
 export const ButtonExport = styled.button`
   border: 1px solid ${colors.white};
@@ -25,9 +34,11 @@ export const ButtonExport = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 5px;
   background-color: transparent;
   width: 135px;
+  margin: 0 15px;
+  margin-right: 0;
 
   svg {
     margin-right: 0.5rem;
@@ -37,9 +48,10 @@ export const ButtonExport = styled.button`
 export const MenuButtonImage = styled.img``;
 
 export const GroupButton = styled.div`
-  width: 180px;
+  width: 250px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 export const TextExit = styled.p`

@@ -16,6 +16,7 @@ import {
   FooterLanguageSelect,
 } from '../../components';
 import * as S from './styles';
+import { useLoader } from '../../hooks/loader';
 
 type FormValues = {
   username: string;
@@ -26,6 +27,7 @@ const SignIn: React.FC = () => {
   const { t } = useTranslation();
   const { updateUser } = useData();
   const history = useHistory();
+  const { loader, toggleLoader }  = useLoader();
   const schema = Yup.object().shape({
     username: Yup.string().required('Usuário obrigatório'),
     password: Yup.string().required('Senha obrigatória'),
@@ -43,10 +45,10 @@ const SignIn: React.FC = () => {
         form.username,
         form.password,
       );
-      if (!data) {
+      if (!data.data) {
         throw new Error('user not found');
       }
-      updateUser(data);
+      updateUser(data.data);
       history.push('/');
     } catch (error) {
       toast.error('Usuário não encontrado');
@@ -81,7 +83,7 @@ const SignIn: React.FC = () => {
                 placeholder={t('signIn.password')}
                 errors={errors}
               />
-              <Button type="submit">
+              <Button loading={loader} onClick={() => toggleLoader(true)} type="submit">
                 <Translator path="signIn.enter" />
               </Button>
             </S.Form>

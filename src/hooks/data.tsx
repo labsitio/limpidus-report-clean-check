@@ -238,7 +238,7 @@ const DataProvider: React.FC = ({ children }) => {
         orderBy,
         idArea
       );
-      const rawAreasData = rawAreasPromise.data;
+      const rawAreasData = rawAreasPromise.data.data;
       updateRawAreas(rawAreasData);
 
       return rawAreasData;

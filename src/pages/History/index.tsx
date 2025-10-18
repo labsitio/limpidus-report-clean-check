@@ -3,13 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import historyService from '../../services/historyService';
 import * as S from '../../components/Commons';
-import {
-  Button,
-  FooterLanguageSelect,
-  Header,
-  STATUS,
-  Status,
-} from '../../components';
+import { FooterLanguageSelect, Header, STATUS, Status } from '../../components';
 import { useLoader } from '../../hooks/loader';
 import { IHistory } from '../../interfaces';
 import {
@@ -29,7 +23,7 @@ import FormFilter, { IFormFilterResolve } from '../../components/FormFilter';
 
 import { getCurrentProjectLocal } from '../../services/projectService';
 import useDeviceDimensions from '../../hooks/useDevice';
-import Form, { IField } from '../../components/Form';
+import { IField } from '../../components/Form';
 
 const today = new Date();
 
@@ -43,7 +37,7 @@ const History: FC = () => {
   const [history, setHistory] = useState<Array<IHistory>>([]);
   const [sort, setSort] = useState<string>('ASC');
   const [sortField, setSortField] = useState<string>('');
-  const [opened, setOpened] = useState<boolean>(true);
+  const [opened, setOpened] = useState<boolean>(false);
   const { isDesktop } = useDeviceDimensions();
   const [formFieldsState, setFormFieldsState] = useState<IFormFilterResolve>({
     project: { name: '', id: 0 },
@@ -59,11 +53,14 @@ const History: FC = () => {
     employee: '',
     status: '',
   });
+  const [expandedRowId, setExpandedRowId] = useState<string>('');
   const { getHistory, exportHistory } = historyService();
   const { loader, toggleLoader } = useLoader();
   const { t } = useTranslation();
   const { getFormatDay, getFormatMonth, getExtenseHour } = dateUtils();
   const { idProjeto, nome } = getCurrentProjectLocal();
+  const [employees, setEmployees] = useState<Array<string>>([]);
+  const [departments, setDepartments] = useState<Array<string>>([]);
 
   function handleChangeFields(fieldName: string, value: string) {
     setFormFieldsState({ ...formFieldsState, [fieldName]: value });
@@ -81,81 +78,6 @@ const History: FC = () => {
       setSort('ASC');
     }
   }
-  const formFields: IField[] = [
-    {
-      type: 'select',
-      name: 'project',
-      placeholder: 'Projeto',
-      value: idProjeto,
-      disabled: true,
-      onChange: (e: any) => {
-        handleChangeFields('projeto', e.target.value);
-      },
-      options: [
-        {
-          key: 1,
-          value: idProjeto,
-          label: nome,
-        },
-      ],
-      style: { width: '56%' },
-    },
-    {
-      type: 'date',
-      onChange: (e: any) => {
-        handleChangeFields('initialDate', e.target.value);
-      },
-      name: 'initialDate',
-      placeholder: t('filter.startDate'),
-      value: formFieldsState.initialDate,
-      style: { width: '20%' },
-    },
-    {
-      type: 'date',
-      onChange: (e: any) => {
-        handleChangeFields('finishDate', e.target.value);
-      },
-      name: 'finishDate',
-      placeholder: t('filter.finishDate'),
-      value: formFieldsState.finishDate,
-      style: { width: '20%' },
-    },
-    {
-      type: 'text',
-      onChange: (e: any) => {
-        handleChangeFields('department', e.target.value);
-      },
-      name: 'department',
-      placeholder: t('filter.department'),
-      value: formFieldsState.department,
-      style: { width: '42%' },
-    },
-    {
-      type: 'text',
-      onChange: (e: any) => {
-        handleChangeFields('employee', e.target.value);
-      },
-      name: 'employee',
-      placeholder: t('filter.employee'),
-      value: formFieldsState.employee,
-      style: { width: '43%' },
-    },
-    {
-      type: 'select',
-      name: 'status',
-      placeholder: 'Status',
-      value: formFieldsState.status,
-      style: { width: '11%' },
-      onChange: (e: any) => {
-        handleChangeFields('status', e.target.value);
-      },
-      options: statusFilterOptions.map(({ value, label }, index) => ({
-        key: index,
-        value: value,
-        label: label,
-      })),
-    },
-  ];
 
   function changeSort() {
     if (sortField === 'area' && sort === 'ASC')
@@ -197,7 +119,7 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(response => {
-        const href = URL.createObjectURL(response.data);
+        const href = URL.createObjectURL(response.data.data);
 
         const link = document.createElement('a');
         link.href = href;
@@ -227,18 +149,16 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(arr => {
-        setHistory(arr.data.data);
+        console.log('arr', arr);
+        const { data, employees, departments } = arr.data.data;
+        setHistory(data);
+        if (data.length) {
+          if (departments.length > 1) setDepartments(['Selecione', ...departments]);
+          if (employees.length > 1) setEmployees(['Selecione', ...employees]);
+        }
       })
       .finally(() => toggleLoader(false));
   };
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      getHistoryItems();
-    }, 1500);
-
-    return () => clearTimeout(timeout);
-  }, [formFieldsState]);
 
   useEffect(() => {
     changeSort();
@@ -251,27 +171,42 @@ const History: FC = () => {
     });
   }, [idProjeto]);
 
+  useEffect(() => {
+    getHistoryItems();
+  }, []);
+
+  console.log(employees, departments);
+  const handleClose = () => setOpened(!opened);
   return (
     <>
+      <Header
+        buttonExport={history.length > 0}
+        onExport={handleOnExport}
+        formFieldsState={formFieldsState}
+        setFormFieldsState={setFormFieldsState}
+        handleOpen={handleClose}
+        onSubmit={(params: IFormFilterResolve) => handleOnSubmit(params)}
+        isDesktop={isDesktop}
+        employees={employees}
+        departments={departments}
+      />
       <S.Container>
-        <Header
-          buttonExport={history.length > 0}
-          onExport={handleOnExport}
-          formFieldsState={formFieldsState}
-          setFormFieldsState={setFormFieldsState}
-          onSubmit={(params: IFormFilterResolve) => handleOnSubmit(params)}
-          isDesktop={isDesktop}
-        />
-        {isDesktop && (
-          <FormFilter
-            formFieldsState={formFieldsState}
-            opened={true}
-            setFormFieldsState={setFormFieldsState}
-            onSubmit={(params: IFormFilterResolve) => handleOnSubmit(params)}
-            isDesktop={isDesktop}
-          />
-        )}
-        <S.Content className={isDesktop ? 'desktop' : ''}>  
+        <S.Content className={isDesktop ? 'desktop' : ''}>
+          {isDesktop && (
+            <FormFilter
+              formFieldsState={formFieldsState}
+              opened={opened}
+              handleClose={handleClose}
+              setFormFieldsState={setFormFieldsState}
+              onSubmit={(params: IFormFilterResolve) => {
+                handleClose();
+                handleOnSubmit(params);
+              }}
+              employees={employees}
+              departments={departments}
+              isDesktop={isDesktop}
+            />
+          )}
           {history.length > 0 && (
             <Table>
               <TableHead>
@@ -317,46 +252,82 @@ const History: FC = () => {
                       dateEnd,
                       duration,
                       status,
+                      ...rest
                     },
                     index,
                   ) => (
-                    <TableRow key={id}>
-                      <TableCell>{department}</TableCell>
-                      <TableCell>{employee}</TableCell>
-                      <TableCell>
-                        <DateSessionFormater>
-                          <DateFormater
-                            day={getFormatDay(new Date(dateStart))}
-                            month={getFormatMonth(new Date(dateStart))}
-                            year={String(new Date(dateStart).getFullYear())}
+                    <React.Fragment key={id}>
+                      <TableRow
+                        onClick={() =>
+                          setExpandedRowId(expandedRowId === id ? '' : id)
+                        }
+                        style={{
+                          cursor: 'pointer',
+                          background:
+                            expandedRowId === id ? '#f5f5f5' : undefined,
+                        }}
+                      >
+                        <TableCell>{department}</TableCell>
+                        <TableCell>{employee}</TableCell>
+                        <TableCell>
+                          <DateSessionFormater>
+                            <DateFormater
+                              day={getFormatDay(new Date(dateStart))}
+                              month={getFormatMonth(new Date(dateStart))}
+                              year={String(new Date(dateStart).getFullYear())}
+                            />
+                            <ExtenseHour>
+                              {getExtenseHour(new Date(dateStart))}
+                            </ExtenseHour>
+                          </DateSessionFormater>
+                        </TableCell>
+                        <TableCell>
+                          <DateSessionFormater>
+                            <DateFormater
+                              day={getFormatDay(new Date(dateEnd))}
+                              month={getFormatMonth(new Date(dateEnd))}
+                              year={String(new Date(dateEnd).getFullYear())}
+                            />
+                            <ExtenseHour>
+                              {getExtenseHour(new Date(dateEnd))}
+                            </ExtenseHour>
+                          </DateSessionFormater>
+                        </TableCell>
+                        <TableCell>
+                          <ExtenseHour>{duration.split('.')[0]}</ExtenseHour>
+                        </TableCell>
+                        <TableCell>
+                          <Status
+                            status={status ? STATUS.SUCCESS : STATUS.DANGER}
+                            style={{ width: '100%' }}
                           />
-                          <ExtenseHour>
-                            {getExtenseHour(new Date(dateStart))}
-                          </ExtenseHour>
-                        </DateSessionFormater>
-                      </TableCell>
-                      <TableCell>
-                        <DateSessionFormater>
-                          <DateFormater
-                            day={getFormatDay(new Date(dateEnd))}
-                            month={getFormatMonth(new Date(dateEnd))}
-                            year={String(new Date(dateEnd).getFullYear())}
-                          />
-                          <ExtenseHour>
-                            {getExtenseHour(new Date(dateEnd))}
-                          </ExtenseHour>
-                        </DateSessionFormater>
-                      </TableCell>
-                      <TableCell>
-                        <ExtenseHour>{duration.split('.')[0]}</ExtenseHour>
-                      </TableCell>
-                      <TableCell>
-                        <Status
-                          status={status ? STATUS.SUCCESS : STATUS.DANGER}
-                          style={{ width: '100%' }}
-                        />
-                      </TableCell>
-                    </TableRow>
+                        </TableCell>
+                      </TableRow>
+                      {expandedRowId === id && (
+                        <TableRow>
+                          <TableCell
+                            colSpan={6}
+                            style={{ background: '#fafafa' }}
+                          >
+                            <div style={{ padding: '16px' }}>
+                              <strong>Detalhes:</strong>
+                              <br />
+                              Área: {department}
+                              <br />
+                              Funcionário: {employee}
+                              <br />
+                              Início: {dateStart}
+                              <br />
+                              Conclusão: {dateEnd}
+                              <br />
+                              Duração: {duration}
+                              <br />
+                              Status: {status ? 'Concluído' : 'Não Realizado'}
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </React.Fragment>
                   ),
                 )}
               </TableBody>
