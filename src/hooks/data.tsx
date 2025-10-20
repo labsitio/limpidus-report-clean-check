@@ -245,7 +245,6 @@ const DataProvider: React.FC = ({ children }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      console.log('finalizou');
       toggleLoader(false);
     }
     return rawAreas;

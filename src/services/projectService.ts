@@ -1,7 +1,8 @@
+import { User } from '../interfaces';
 import api from './api';
 
 export const getProject = (login: string, password: string) => {
-  return api.get(`/projetos?login=${login}&senha=${password}`);
+  return api.get<User>(`/projetos?login=${login}&senha=${password}`);
 };
 
 export const saveProjectLocal = (data: string): void => {

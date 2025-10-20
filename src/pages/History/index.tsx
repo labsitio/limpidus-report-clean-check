@@ -149,7 +149,6 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(arr => {
-        console.log('arr', arr);
         const { employees, departments, data = [] } = arr.data.data;
         setHistory(data);
         if (data.length) {
@@ -175,7 +174,6 @@ const History: FC = () => {
     getHistoryItems();
   }, []);
 
-  console.log(employees, departments);
   const handleClose = () => setOpened(!opened);
   return (
     <>
@@ -294,7 +292,7 @@ const History: FC = () => {
                           </DateSessionFormater>
                         </TableCell>
                         <TableCell>
-                          <ExtenseHour>{duration.split('.')[0]}</ExtenseHour>
+                          <ExtenseHour>{Number(duration.replace(':','').split('.')[0]) < 0 ? 0 : duration.split('.')[0]}</ExtenseHour>
                         </TableCell>
                         <TableCell>
                           <Status
