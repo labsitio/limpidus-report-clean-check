@@ -56,7 +56,8 @@ export interface User {
 export interface IHistory {
   id: string;
   department: string;
-  employee: string;
+  employeeName: string;
+  employeeLastName: string;
   dateStart: string;
   dateEnd: string;
   duration: string;

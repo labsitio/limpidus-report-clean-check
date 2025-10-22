@@ -9,7 +9,7 @@ export default function historyService() {
     return newAPI.get<{
       data: {
         departments: Array<string>;
-        employees: Array<string>;
+        employees: Array<{name: string; lastName: string}>;
         data: Array<IHistory>;
       };
       success: boolean;
@@ -35,6 +35,7 @@ export interface IHistoryRequest {
   DateStart: Date;
   DateEnd: Date;
   Department: string;
-  Employee: string;
+  EmployeeName: string;
+  EmployeeLastName: string;
   Status: boolean | null;
 }

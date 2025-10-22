@@ -86,7 +86,7 @@ const History: FC = () => {
       ]);
     if (sortField === 'employee' && sort === 'ASC')
       setHistory([
-        ...history.sort((a, b) => a.employee.localeCompare(b.employee)),
+        ...history.sort((a, b) => a.employeeName.localeCompare(b.employeeName)),
       ]);
     if (sortField === 'start' && sort === 'ASC')
       setHistory([
@@ -112,7 +112,8 @@ const History: FC = () => {
       DateEnd: new Date(formFieldsState.finishDate),
       DateStart: new Date(formFieldsState.initialDate),
       Department: formFieldsState.department,
-      Employee: formFieldsState.employee,
+      EmployeeName: formFieldsState.employee.split(' ')[0],
+      EmployeeLastName: formFieldsState.employee.split(' ').slice(1).join(' '),
       Status:
         formFieldsState.status === ''
           ? null
@@ -142,7 +143,8 @@ const History: FC = () => {
       DateEnd: new Date(formFieldsState.finishDate),
       DateStart: new Date(formFieldsState.initialDate),
       Department: formFieldsState.department,
-      Employee: formFieldsState.employee,
+      EmployeeName: formFieldsState.employee.split(' ')[0],
+      EmployeeLastName: formFieldsState.employee.split(' ').slice(1).join(' '),
       Status:
         formFieldsState.status === ''
           ? null
@@ -152,8 +154,8 @@ const History: FC = () => {
         const { employees, departments, data = [] } = arr.data.data;
         setHistory(data);
         if (data.length) {
-          if (departments.length > 1) setDepartments(['Selecione', ...departments]);
-          if (employees.length > 1) setEmployees(['Selecione', ...employees]);
+          if (departments.length > 1) setDepartments(['Departamento', ...departments]);
+          if (employees.length > 1) setEmployees(['Usuário', ...employees.map(emp => `${emp.name} ${emp.lastName}`)]);
         }
       })
       .finally(() => toggleLoader(false));
@@ -245,7 +247,8 @@ const History: FC = () => {
                     {
                       id,
                       department,
-                      employee,
+                      employeeName,
+                      employeeLastName,
                       dateStart,
                       dateEnd,
                       duration,
@@ -266,7 +269,7 @@ const History: FC = () => {
                         }}
                       >
                         <TableCell>{department}</TableCell>
-                        <TableCell>{employee}</TableCell>
+                        <TableCell>{employeeName + " " + employeeLastName}</TableCell>
                         <TableCell>
                           <DateSessionFormater>
                             <DateFormater
@@ -312,7 +315,7 @@ const History: FC = () => {
                               <br />
                               Área: {department}
                               <br />
-                              Funcionário: {employee}
+                              Funcionário: {employeeName + " " + employeeLastName}
                               <br />
                               Início: {dateStart}
                               <br />
