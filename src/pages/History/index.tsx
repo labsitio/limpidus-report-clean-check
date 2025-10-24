@@ -61,6 +61,7 @@ const History: FC = () => {
   const { idProjeto, nome } = getCurrentProjectLocal();
   const [employees, setEmployees] = useState<Array<string>>([]);
   const [departments, setDepartments] = useState<Array<string>>([]);
+  const [isDateChanged, setIsDateChanged] = useState(false)
 
   function handleChangeFields(fieldName: string, value: string) {
     setFormFieldsState({ ...formFieldsState, [fieldName]: value });
@@ -151,11 +152,12 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(arr => {
-        const { employees, departments, data = [] } = arr.data.data;
+        const { employees: _employees, departments: _departments, data = [] } = arr.data.data;
         setHistory(data);
         if (data.length) {
-          if (departments.length > 1) setDepartments(['Departamento', ...departments]);
-          if (employees.length > 1) setEmployees(['Usuário', ...employees.map(emp => `${emp.name} ${emp.lastName}`)]);
+          if (!departments.length || isDateChanged) setDepartments(['Todos', ..._departments]);
+          if (!employees.length || isDateChanged) setEmployees(['Todos', ..._employees.map(emp => `${emp.name} ${emp.lastName}`)]);
+          setIsDateChanged(false);
         }
       })
       .finally(() => toggleLoader(false));
@@ -171,6 +173,10 @@ const History: FC = () => {
       project: { name: nome, id: idProjeto },
     });
   }, [idProjeto]);
+
+  useEffect(() => {
+    setIsDateChanged(true);
+  }, [formFieldsState.initialDate, formFieldsState.finishDate]);
 
   useEffect(() => {
     getHistoryItems();
