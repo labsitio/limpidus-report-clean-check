@@ -119,7 +119,7 @@ const FormFilter: FC<IFormFilterProps> = ({
             <ComboWrapper>
               <Combo
                 name="project"
-                placeholder="Projeto"
+                placeholder={t('filter.project')}
                 value={idProjeto}
                 disabled={true}
               >
@@ -127,7 +127,7 @@ const FormFilter: FC<IFormFilterProps> = ({
                   {nome}
                 </Option>
               </Combo>
-              <ComboLabel>Projeto</ComboLabel>
+              <ComboLabel>{t('filter.project')}</ComboLabel>
             </ComboWrapper>
           </Row>
           <Row flexColumn>
