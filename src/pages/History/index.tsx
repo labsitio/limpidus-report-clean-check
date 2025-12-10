@@ -121,7 +121,7 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(response => {
-        const href = URL.createObjectURL(response.data.data);
+        const href = URL.createObjectURL(response.data);
 
         const link = document.createElement('a');
         link.href = href;
