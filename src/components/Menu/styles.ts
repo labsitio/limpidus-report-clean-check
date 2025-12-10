@@ -76,9 +76,9 @@ export const ButtonIcon = styled.button`
   display: flex;
   align-self: center;
 
-  svg{
-    margin:0 auto;
-    align-self:center
+  svg {
+    margin: 0 auto;
+    align-self: center;
   }
 `;
 
@@ -141,7 +141,7 @@ export const ButtonExit = styled(Button)`
   display: flex;
   align-self: center;
   height: auto !important;
-  padding:5px;  
+  padding: 5px;
 
   &.desktop {
     color: ${colors.white};
@@ -152,7 +152,7 @@ export const ButtonExit = styled(Button)`
     align-self: center;
     align-items: center;
     &svg {
-    display:none;
+      display: none;
       margin-right: 5px;
     }
   }
@@ -161,6 +161,6 @@ export const ButtonExit = styled(Button)`
 export const IconExit = styled.img`
   margin-right: 5px;
   &.desktop {
-   color: ${colors.white};
+    color: ${colors.white};
   }
 `;

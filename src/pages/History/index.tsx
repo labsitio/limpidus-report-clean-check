@@ -61,7 +61,7 @@ const History: FC = () => {
   const { idProjeto, nome } = getCurrentProjectLocal();
   const [employees, setEmployees] = useState<Array<string>>([]);
   const [departments, setDepartments] = useState<Array<string>>([]);
-  const [isDateChanged, setIsDateChanged] = useState(false)
+  const [isDateChanged, setIsDateChanged] = useState(false);
 
   function handleChangeFields(fieldName: string, value: string) {
     setFormFieldsState({ ...formFieldsState, [fieldName]: value });
@@ -152,11 +152,20 @@ const History: FC = () => {
           : formFieldsState.status === 'true',
     })
       .then(arr => {
-        const { employees: _employees, departments: _departments, data = [] } = arr.data.data;
+        const {
+          employees: _employees,
+          departments: _departments,
+          data = [],
+        } = arr.data.data;
         setHistory(data);
         if (data.length) {
-          if (!departments.length || isDateChanged) setDepartments(['Todos', ..._departments]);
-          if (!employees.length || isDateChanged) setEmployees(['Todos', ..._employees.map(emp => `${emp.name} ${emp.lastName}`)]);
+          if (!departments.length || isDateChanged)
+            setDepartments(['Todos', ..._departments]);
+          if (!employees.length || isDateChanged)
+            setEmployees([
+              'Todos',
+              ..._employees.map(emp => `${emp.name} ${emp.lastName}`),
+            ]);
           setIsDateChanged(false);
         }
       })
@@ -275,7 +284,9 @@ const History: FC = () => {
                         }}
                       >
                         <TableCell>{department}</TableCell>
-                        <TableCell>{employeeName + " " + employeeLastName}</TableCell>
+                        <TableCell>
+                          {employeeName + ' ' + employeeLastName}
+                        </TableCell>
                         <TableCell>
                           <DateSessionFormater>
                             <DateFormater
@@ -301,7 +312,11 @@ const History: FC = () => {
                           </DateSessionFormater>
                         </TableCell>
                         <TableCell>
-                          <ExtenseHour>{Number(duration.replace(':','').split('.')[0]) < 0 ? 0 : duration.split('.')[0]}</ExtenseHour>
+                          <ExtenseHour>
+                            {Number(duration.replace(':', '').split('.')[0]) < 0
+                              ? 0
+                              : duration.split('.')[0]}
+                          </ExtenseHour>
                         </TableCell>
                         <TableCell>
                           <Status
@@ -321,7 +336,8 @@ const History: FC = () => {
                               <br />
                               Área: {department}
                               <br />
-                              Funcionário: {employeeName + " " + employeeLastName}
+                              Funcionário:{' '}
+                              {employeeName + ' ' + employeeLastName}
                               <br />
                               Início: {dateStart}
                               <br />

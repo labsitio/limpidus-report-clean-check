@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { colors } from '../../styles';
 
 export const Table = styled.table`
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 `;
 
 export const TableHead = styled.thead``;
 
 export const TableBody = styled.tbody`
-    height: 400px;
-    overflow-y: auto;
+  /* height: 400px; */
+  overflow-y: auto;
 `;
 
 export const TableRow = styled.tr`

@@ -27,6 +27,7 @@ export default {
       department: 'Departamento',
       project: 'Proyecto',
       exit: 'Salir',
+      status: 'Estado',
     },
   },
 };
