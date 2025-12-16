@@ -17,7 +17,14 @@ import MenuIcon from '../../assets/menuIconBlue.svg';
 import { ReactI18NextChild, useTranslation } from 'react-i18next';
 import * as ProjectService from '../../services/projectService';
 import { useHistory } from 'react-router-dom';
-import { Combo, Input, Option } from './styles';
+import {
+  Combo,
+  ComboLabel,
+  ComboWrapper,
+  Input,
+  Label,
+  Option,
+} from './styles';
 import useDeviceDimensions from '../../hooks/useDevice';
 import { MdClose } from 'react-icons/md';
 
@@ -57,7 +64,7 @@ const FormFilter: FC<IFormFilterProps> = ({
     finishDate: new Date().toISOString().split('T')[0],
     department: '',
     employee: '',
-    status: ''
+    status: '',
   },
   employees = [],
   departments = [],
@@ -68,6 +75,16 @@ const FormFilter: FC<IFormFilterProps> = ({
   const menuRef = useRef<HTMLInputElement>();
   const { t } = useTranslation();
   const { idProjeto, nome } = ProjectService.getCurrentProjectLocal();
+
+  useEffect(() => {
+    if (idProjeto && nome) {
+      setFields(prevFields => ({
+        ...prevFields,
+        project: { id: idProjeto, name: nome },
+      }));
+    }
+  }, [idProjeto, nome]);
+
   function handleSubmit() {
     onSubmit(fields);
   }
@@ -99,16 +116,19 @@ const FormFilter: FC<IFormFilterProps> = ({
       <Content>
         <Form onSubmit={() => handleSubmit()}>
           <Row flexColumn>
-            <Combo
-              name="project"
-              placeholder="Projeto"
-              value={idProjeto}
-              disabled={true}
-            >
-              <Option value={idProjeto} defaultValue={idProjeto}>
-                {nome}
-              </Option>
-            </Combo>
+            <ComboWrapper>
+              <Combo
+                name="project"
+                placeholder={t('filter.project')}
+                value={idProjeto}
+                disabled={true}
+              >
+                <Option value={idProjeto} defaultValue={idProjeto}>
+                  {nome}
+                </Option>
+              </Combo>
+              <ComboLabel>{t('filter.project')}</ComboLabel>
+            </ComboWrapper>
           </Row>
           <Row flexColumn>
             <Row justifySpaceBetween>
@@ -132,65 +152,90 @@ const FormFilter: FC<IFormFilterProps> = ({
           </Row>
           <Row flexColumn>
             {departments.length ? (
-              <Combo
-                name="department"
-                placeholder="Departamento"
-                value={fields.department}
-                onChange={e => handleChangeFields('department', e.target.value)}
-              >
-                {departments.map((department: string, index: number) => (
-                  <Option key={`department-${index}`} value={index !==0 ? department : ''}>
-                    {department}
-                  </Option>
-                ))}
-              </Combo>
+              <ComboWrapper>
+                <Combo
+                  name="department"
+                  placeholder={t('filter.department')}
+                  value={fields.department}
+                  onChange={e =>
+                    handleChangeFields('department', e.target.value)
+                  }
+                >
+                  {departments.map((department: string, index: number) => (
+                    <Option
+                      key={`department-${index}`}
+                      value={index !== 0 ? department : ''}
+                    >
+                      {department}
+                    </Option>
+                  ))}
+                </Combo>
+                <ComboLabel>{t('filter.department')}</ComboLabel>
+              </ComboWrapper>
             ) : (
-              <Input
-                type="text"
-                onChange={e => handleChangeFields('department', e.target.value)}
-                name="department"
-                placeholder={t('filter.department')}
-                value={fields.department}
-              />
+              <>
+                <Label>{t('filter.department')}</Label>
+                <Input
+                  type="text"
+                  onChange={e =>
+                    handleChangeFields('department', e.target.value)
+                  }
+                  name="department"
+                  placeholder={t('filter.department')}
+                  value={fields.department}
+                />
+              </>
             )}
           </Row>
           <Row flexColumn>
             {employees.length ? (
-              <Combo
-                name="employee"
-                placeholder="Funcionário"
-                value={fields.employee}
-                onChange={e => handleChangeFields('employee', e.target.value)}
-              >
-                {employees.map((employee: string, index: number) => (
-                  <Option key={`employee-${index}`} value={index !== 0 ? employee : ''}>
-                    {employee}
-                  </Option>
-                ))}
-              </Combo>
+              <ComboWrapper>
+                <Combo
+                  name="employee"
+                  placeholder={t('filter.employee')}
+                  value={fields.employee}
+                  onChange={e => handleChangeFields('employee', e.target.value)}
+                >
+                  {employees.map((employee: string, index: number) => (
+                    <Option
+                      key={`employee-${index}`}
+                      value={index !== 0 ? employee : ''}
+                    >
+                      {employee}
+                    </Option>
+                  ))}
+                </Combo>
+                <ComboLabel>{t('filter.employee')}</ComboLabel>
+              </ComboWrapper>
             ) : (
-              <Input
-                type="text"
-                onChange={e => handleChangeFields('employee', e.target.value)}
-                name="employee"
-                placeholder={t('filter.employee')}
-                value={fields.employee}
-              />
+              <>
+                <Label>{t('filter.employee')}</Label>
+                <Input
+                  type="text"
+                  onChange={e => handleChangeFields('employee', e.target.value)}
+                  name="employee"
+                  placeholder={t('filter.employee')}
+                  value={fields.employee}
+                />
+              </>
             )}
           </Row>
           <Row flexColumn>
-            <Combo
-              name="status"
-              placeholder="Status"
-              value={fields.status}
-              onChange={e => handleChangeFields('status', e.target.value)}
-            >
-              {statusFilterOptions.map(({ value, label }, index) => (
-                <Option key={index} value={value} defaultValue={''}>
-                  {label}
-                </Option>
-              ))}
-            </Combo>
+            <ComboWrapper>
+              <Combo
+                name="status"
+                placeholder={t('filter.status')}
+                value={fields.status}
+                onChange={e => handleChangeFields('status', e.target.value)}
+              >
+                {statusFilterOptions.map(({ value, label }, index) => (
+                  <Option key={index} value={value} defaultValue={''}>
+                    {label}
+                  </Option>
+                ))}
+              </Combo>
+              <ComboLabel>{t('filter.status')}</ComboLabel>
+            </ComboWrapper>
           </Row>
         </Form>
         <Buttons>
