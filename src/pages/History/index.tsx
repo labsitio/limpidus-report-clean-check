@@ -315,7 +315,7 @@ const History: FC = () => {
                           <ExtenseHour>
                             {Number(duration.replace(':', '').split('.')[0]) < 0
                               ? 0
-                              : duration.split('.')[0]}
+                              : duration.split('.')[0].replace('-', '')}
                           </ExtenseHour>
                         </TableCell>
                         <TableCell>
