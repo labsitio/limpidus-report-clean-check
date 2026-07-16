@@ -7,8 +7,6 @@ export default {
       user: 'Usuário',
       password: 'Senha',
       enter: 'Entrar',
-      loginTypeProject: 'Projeto',
-      loginTypeFranqueado: 'Franqueado',
     },
 
     dashboard: {

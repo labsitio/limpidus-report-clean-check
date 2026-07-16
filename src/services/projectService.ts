@@ -21,7 +21,7 @@ interface LoginApiResponse {
   };
 }
 
-export const login = (login: string, password: string, type: LoginType = 'project') => {
+export const login = (login: string, password: string, type: LoginType = 'franqueado') => {
   return newAPI.post<LoginApiResponse>('/auth/login', {
     type,
     login,
