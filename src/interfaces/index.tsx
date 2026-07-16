@@ -48,9 +48,23 @@ export interface Status {
   descricao: string;
 }
 
+export type AuthRole = 'Franqueado' | 'Admin' | 'ProjectViewer';
+
+export interface AllowedProject {
+  id: number;
+  name: string;
+}
+
 export interface User {
   idProjeto: number;
   nome: string;
+  token?: string;
+  role?: AuthRole;
+  isFranqueado?: boolean;
+  isAdmin?: boolean;
+  franqId?: number | null;
+  allowedProjects?: AllowedProject[];
+  expiresAtUtc?: string;
 }
 
 export interface IHistory {
@@ -62,4 +76,8 @@ export interface IHistory {
   dateEnd: string;
   duration: string;
   status: boolean;
+  justification?: {
+    information?: string;
+    reason?: string;
+  } | null;
 }

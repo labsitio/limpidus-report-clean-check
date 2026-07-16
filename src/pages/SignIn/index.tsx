@@ -33,7 +33,7 @@ const SignIn: React.FC = () => {
     password: Yup.string().required('Senha obrigatória'),
   });
 
-  const { register, handleSubmit, errors, setValue } = useForm<FormValues>({
+  const { register, handleSubmit, errors } = useForm<FormValues>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
     defaultValues: {},
@@ -42,14 +42,15 @@ const SignIn: React.FC = () => {
   const onSubmit = async (form: FormValues) => {
     toggleLoader(true);
     try {
-      const { data } = await ProjectService.getProject(
+      const { data } = await ProjectService.login(
         form.username,
         form.password,
       );
-      if (!data) {
+      if (!data?.success || !data?.data?.token) {
         throw new Error('user not found');
       }
-      updateUser(data);
+      const user = ProjectService.mapLoginToUser(data.data);
+      updateUser(user);
       history.push('/');
     } catch (error) {
       toggleLoader(false);

@@ -48,10 +48,11 @@ export const ButtonExport = styled.button`
 export const MenuButtonImage = styled.img``;
 
 export const GroupButton = styled.div`
-  width: 250px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 export const TextExit = styled.p`

@@ -21,19 +21,19 @@ import DateFormater from '../../components/DateFormater';
 import { dateUtils } from '../../utils/dateUtils';
 import FormFilter, { IFormFilterResolve } from '../../components/FormFilter';
 
-import { getCurrentProjectLocal } from '../../services/projectService';
+import {
+  canExportReports,
+  getCurrentProjectLocal,
+  isFranqueadoUser,
+} from '../../services/projectService';
 import useDeviceDimensions from '../../hooks/useDevice';
 import { IField } from '../../components/Form';
 
 const today = new Date();
 
-const statusFilterOptions = [
-  { value: 'false', label: 'Não Realizado' },
-  { value: 'true', label: 'Concluido' },
-  { value: '', label: 'Todos' },
-];
-
 const History: FC = () => {
+  const currentUser = getCurrentProjectLocal();
+  const isFranqueado = isFranqueadoUser(currentUser);
   const [history, setHistory] = useState<Array<IHistory>>([]);
   const [sort, setSort] = useState<string>('ASC');
   const [sortField, setSortField] = useState<string>('');
@@ -51,14 +51,15 @@ const History: FC = () => {
     finishDate: new Date().toISOString().split('T')[0],
     department: '',
     employee: '',
-    status: '',
+    status: isFranqueado ? 'true' : '',
   });
   const [expandedRowId, setExpandedRowId] = useState<string>('');
   const { getHistory, exportHistory } = historyService();
   const { loader, toggleLoader } = useLoader();
   const { t } = useTranslation();
   const { getFormatDay, getFormatMonth, getExtenseHour } = dateUtils();
-  const { idProjeto, nome } = getCurrentProjectLocal();
+  const { idProjeto, nome } = currentUser || { idProjeto: 0, nome: '' };
+  const allowExport = canExportReports(currentUser);
   const [employees, setEmployees] = useState<Array<string>>([]);
   const [departments, setDepartments] = useState<Array<string>>([]);
   const [isDateChanged, setIsDateChanged] = useState(false);
@@ -108,8 +109,10 @@ const History: FC = () => {
   };
 
   const handleOnExport = () => {
+    const projectId =
+      formFieldsState.project?.id || idProjeto;
     toggleLoader(true);
-    exportHistory(idProjeto, {
+    exportHistory(projectId, {
       DateEnd: new Date(formFieldsState.finishDate),
       DateStart: new Date(formFieldsState.initialDate),
       Department: formFieldsState.department,
@@ -138,18 +141,22 @@ const History: FC = () => {
       .finally(() => toggleLoader(false));
   };
 
-  const getHistoryItems = (params?: any) => {
+  const getHistoryItems = (params?: IFormFilterResolve) => {
+    const source = params || formFieldsState;
+    const projectId = source.project?.id || idProjeto;
+    if (!projectId) {
+      setHistory([]);
+      return;
+    }
     toggleLoader(true);
-    getHistory(idProjeto, {
-      DateEnd: new Date(formFieldsState.finishDate),
-      DateStart: new Date(formFieldsState.initialDate),
-      Department: formFieldsState.department,
-      EmployeeName: formFieldsState.employee.split(' ')[0],
-      EmployeeLastName: formFieldsState.employee.split(' ').slice(1).join(' '),
+    getHistory(projectId, {
+      DateEnd: new Date(source.finishDate),
+      DateStart: new Date(source.initialDate),
+      Department: source.department,
+      EmployeeName: source.employee.split(' ')[0],
+      EmployeeLastName: source.employee.split(' ').slice(1).join(' '),
       Status:
-        formFieldsState.status === ''
-          ? null
-          : formFieldsState.status === 'true',
+        source.status === '' ? null : source.status === 'true',
     })
       .then(arr => {
         const {
@@ -167,6 +174,9 @@ const History: FC = () => {
               ..._employees.map(emp => `${emp.name} ${emp.lastName}`),
             ]);
           setIsDateChanged(false);
+        } else {
+          setDepartments([]);
+          setEmployees([]);
         }
       })
       .finally(() => toggleLoader(false));
@@ -195,7 +205,7 @@ const History: FC = () => {
   return (
     <>
       <Header
-        buttonExport={history.length > 0}
+        buttonExport={allowExport && history.length > 0}
         onExport={handleOnExport}
         formFieldsState={formFieldsState}
         setFormFieldsState={setFormFieldsState}
@@ -346,6 +356,17 @@ const History: FC = () => {
                               Duração: {duration}
                               <br />
                               Status: {status ? 'Concluído' : 'Não Realizado'}
+                              {allowExport &&
+                                (rest as any)?.justification?.information && (
+                                  <>
+                                    <br />
+                                    Justificativa:{' '}
+                                    {(rest as any).justification.information}
+                                    {(rest as any).justification?.reason
+                                      ? ` (${(rest as any).justification.reason})`
+                                      : ''}
+                                  </>
+                                )}
                             </div>
                           </TableCell>
                         </TableRow>

@@ -8,6 +8,7 @@ export default {
       password: 'contraseña',
       enter: 'Entrar',
     },
+
     dashboard: {
       area: 'Zona',
       start: 'Comienzo',
@@ -28,6 +29,27 @@ export default {
       project: 'Proyecto',
       exit: 'Salir',
       status: 'Estado',
+    },
+    users: {
+      nav: 'Usuarios',
+      title: 'Usuarios',
+      subtitle:
+        'Franquiciados activos. Active Admin para conceder el grupo 1 (misma regla del login).',
+      searchPlaceholder: 'Buscar por nombre o login',
+      colName: 'Nombre',
+      colLogin: 'Login',
+      colType: 'Tipo',
+      colAdmin: 'Admin',
+      roleAdmin: 'Admin',
+      roleFranqueado: 'Franquiciado',
+      adminToggle: 'Admin',
+      empty: 'No se encontraron franquiciados.',
+      loadError: 'No fue posible cargar los usuarios.',
+      updateError: 'No fue posible actualizar el permiso.',
+      promoteSuccess: 'Usuario promovido a Admin.',
+      demoteSuccess: 'Acceso Admin eliminado.',
+      selfDemoteError: 'No puede quitar su propio acceso de Admin.',
+      backToHistory: 'Historial',
     },
   },
 };
