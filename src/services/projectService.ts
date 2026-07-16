@@ -3,7 +3,7 @@ import { newAPI } from './api';
 
 const STORAGE_KEY = 'limpiduscleancheck@project';
 
-export type LoginType = 'project' | 'franqueado';
+export type LoginType = 'auto' | 'project' | 'franqueado';
 
 interface LoginApiResponse {
   success: boolean;
@@ -21,7 +21,7 @@ interface LoginApiResponse {
   };
 }
 
-export const login = (login: string, password: string, type: LoginType = 'project') => {
+export const login = (login: string, password: string, type: LoginType = 'auto') => {
   return newAPI.post<LoginApiResponse>('/auth/login', {
     type,
     login,

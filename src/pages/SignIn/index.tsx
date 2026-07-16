@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -28,9 +28,6 @@ const SignIn: React.FC = () => {
   const { updateUser } = useData();
   const history = useHistory();
   const { loader, toggleLoader } = useLoader();
-  const [loginType, setLoginType] = useState<ProjectService.LoginType>(
-    'project',
-  );
   const schema = Yup.object().shape({
     username: Yup.string().required('Usuário obrigatório'),
     password: Yup.string().required('Senha obrigatória'),
@@ -48,7 +45,6 @@ const SignIn: React.FC = () => {
       const { data } = await ProjectService.login(
         form.username,
         form.password,
-        loginType,
       );
       if (!data?.success || !data?.data?.token) {
         throw new Error('user not found');
@@ -77,22 +73,6 @@ const SignIn: React.FC = () => {
               <Translator path="signIn.subTitle" />
             </S.Subtitle>
             <S.Form onSubmit={handleSubmit(onSubmit)}>
-              <S.LoginTypeRow>
-                <S.LoginTypeButton
-                  type="button"
-                  $active={loginType === 'project'}
-                  onClick={() => setLoginType('project')}
-                >
-                  {t('signIn.loginTypeProject')}
-                </S.LoginTypeButton>
-                <S.LoginTypeButton
-                  type="button"
-                  $active={loginType === 'franqueado'}
-                  onClick={() => setLoginType('franqueado')}
-                >
-                  {t('signIn.loginTypeFranqueado')}
-                </S.LoginTypeButton>
-              </S.LoginTypeRow>
               <Input
                 name="username"
                 placeholder={t('signIn.user')}
