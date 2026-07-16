@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
       const { data } = await ProjectService.login(
         form.username,
         form.password,
-        'franqueado',
+        'project',
       );
       if (!data?.success || !data?.data?.token) {
         throw new Error('user not found');
