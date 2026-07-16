@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -28,12 +28,15 @@ const SignIn: React.FC = () => {
   const { updateUser } = useData();
   const history = useHistory();
   const { loader, toggleLoader } = useLoader();
+  const [loginType, setLoginType] = useState<ProjectService.LoginType>(
+    'project',
+  );
   const schema = Yup.object().shape({
     username: Yup.string().required('Usuário obrigatório'),
     password: Yup.string().required('Senha obrigatória'),
   });
 
-  const { register, handleSubmit, errors, setValue } = useForm<FormValues>({
+  const { register, handleSubmit, errors } = useForm<FormValues>({
     resolver: yupResolver(schema),
     mode: 'onTouched',
     defaultValues: {},
@@ -42,14 +45,16 @@ const SignIn: React.FC = () => {
   const onSubmit = async (form: FormValues) => {
     toggleLoader(true);
     try {
-      const { data } = await ProjectService.getProject(
+      const { data } = await ProjectService.login(
         form.username,
         form.password,
+        loginType,
       );
-      if (!data) {
+      if (!data?.success || !data?.data?.token) {
         throw new Error('user not found');
       }
-      updateUser(data);
+      const user = ProjectService.mapLoginToUser(data.data);
+      updateUser(user);
       history.push('/');
     } catch (error) {
       toggleLoader(false);
@@ -72,6 +77,22 @@ const SignIn: React.FC = () => {
               <Translator path="signIn.subTitle" />
             </S.Subtitle>
             <S.Form onSubmit={handleSubmit(onSubmit)}>
+              <S.LoginTypeRow>
+                <S.LoginTypeButton
+                  type="button"
+                  $active={loginType === 'project'}
+                  onClick={() => setLoginType('project')}
+                >
+                  {t('signIn.loginTypeProject')}
+                </S.LoginTypeButton>
+                <S.LoginTypeButton
+                  type="button"
+                  $active={loginType === 'franqueado'}
+                  onClick={() => setLoginType('franqueado')}
+                >
+                  {t('signIn.loginTypeFranqueado')}
+                </S.LoginTypeButton>
+              </S.LoginTypeRow>
               <Input
                 name="username"
                 placeholder={t('signIn.user')}

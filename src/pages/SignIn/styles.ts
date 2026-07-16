@@ -64,3 +64,21 @@ export const Subtitle = styled(Title)`
 `;
 
 export const Form = styled.form``;
+
+export const LoginTypeRow = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+export const LoginTypeButton = styled.button<{ $active?: boolean }>`
+  flex: 1;
+  border: 1px solid ${colors.orange};
+  border-radius: 4px;
+  padding: 0.6rem 0.4rem;
+  cursor: pointer;
+  background: ${props => (props.$active ? colors.orange : colors.white)};
+  color: ${props => (props.$active ? colors.white : colors.orange)};
+  font-size: 0.85rem;
+`;
+

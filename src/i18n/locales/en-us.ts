@@ -6,7 +6,10 @@ export default {
       user: 'User',
       password: 'Password',
       enter: 'Enter',
+      loginTypeProject: 'Project',
+      loginTypeFranqueado: 'Franchisee',
     },
+
     dashboard: {
       area: 'Area',
       start: 'Start',
@@ -27,6 +30,27 @@ export default {
       project: 'Project',
       exit: 'Exit',
       status: 'Status',
+    },
+    users: {
+      nav: 'Users',
+      title: 'Users',
+      subtitle:
+        'Active franchisees. Toggle Admin to grant group 1 (same rule as login).',
+      searchPlaceholder: 'Search by name or login',
+      colName: 'Name',
+      colLogin: 'Login',
+      colType: 'Type',
+      colAdmin: 'Admin',
+      roleAdmin: 'Admin',
+      roleFranqueado: 'Franchisee',
+      adminToggle: 'Admin',
+      empty: 'No franchisees found.',
+      loadError: 'Could not load users.',
+      updateError: 'Could not update permission.',
+      promoteSuccess: 'User promoted to Admin.',
+      demoteSuccess: 'Admin access removed.',
+      selfDemoteError: 'You cannot remove your own Admin access.',
+      backToHistory: 'History',
     },
   },
 };

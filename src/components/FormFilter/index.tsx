@@ -12,9 +12,7 @@ import {
   Header,
   Row,
 } from '../Menu/styles';
-import IconExit from '../../assets/iconExit.svg';
-import MenuIcon from '../../assets/menuIconBlue.svg';
-import { ReactI18NextChild, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import * as ProjectService from '../../services/projectService';
 import { useHistory } from 'react-router-dom';
 import {
@@ -25,7 +23,6 @@ import {
   Label,
   Option,
 } from './styles';
-import useDeviceDimensions from '../../hooks/useDevice';
 import { MdClose } from 'react-icons/md';
 
 export interface IFormFilterResolve {
@@ -68,13 +65,24 @@ const FormFilter: FC<IFormFilterProps> = ({
   },
   employees = [],
   departments = [],
-  ...props
 }) => {
   const [fields, setFields] = useState(formFieldsState);
   const history = useHistory();
   const menuRef = useRef<HTMLInputElement>();
   const { t } = useTranslation();
-  const { idProjeto, nome } = ProjectService.getCurrentProjectLocal();
+  const currentUser = ProjectService.getCurrentProjectLocal();
+  const idProjeto = currentUser?.idProjeto ?? 0;
+  const nome = currentUser?.nome ?? '';
+  const allowedProjects = currentUser?.allowedProjects ?? [];
+  const isFranqueado = ProjectService.isFranqueadoUser(currentUser);
+  const canSwitchProject =
+    ProjectService.isAdminUser(currentUser) || allowedProjects.length > 1;
+  const projectOptions =
+    allowedProjects.length > 0
+      ? allowedProjects
+      : idProjeto
+        ? [{ id: idProjeto, name: nome }]
+        : [];
 
   useEffect(() => {
     if (idProjeto && nome) {
@@ -85,11 +93,33 @@ const FormFilter: FC<IFormFilterProps> = ({
     }
   }, [idProjeto, nome]);
 
+  useEffect(() => {
+    if (isFranqueado && fields.status !== 'true') {
+      setFields(prevFields => ({
+        ...prevFields,
+        status: 'true',
+      }));
+    }
+  }, [isFranqueado, fields.status]);
+
   function handleSubmit() {
     onSubmit(fields);
   }
   function handleChangeFields(fieldName: string, value: string) {
     setFields({ ...fields, [fieldName]: value });
+  }
+
+  function handleProjectChange(projectIdStr: string) {
+    const projectId = Number(projectIdStr);
+    const selected = projectOptions.find(p => p.id === projectId);
+    if (!selected) return;
+    ProjectService.selectProject(selected.id, selected.name);
+    setFields(prev => ({
+      ...prev,
+      project: { id: selected.id, name: selected.name },
+      department: '',
+      employee: '',
+    }));
   }
 
   const handleExit = () => {
@@ -120,12 +150,15 @@ const FormFilter: FC<IFormFilterProps> = ({
               <Combo
                 name="project"
                 placeholder={t('filter.project')}
-                value={idProjeto}
-                disabled={true}
+                value={fields.project?.id || idProjeto}
+                disabled={!canSwitchProject}
+                onChange={e => handleProjectChange(e.target.value)}
               >
-                <Option value={idProjeto} defaultValue={idProjeto}>
-                  {nome}
-                </Option>
+                {projectOptions.map(project => (
+                  <Option key={project.id} value={project.id}>
+                    {project.name}
+                  </Option>
+                ))}
               </Combo>
               <ComboLabel>{t('filter.project')}</ComboLabel>
             </ComboWrapper>
@@ -228,7 +261,10 @@ const FormFilter: FC<IFormFilterProps> = ({
                 value={fields.status}
                 onChange={e => handleChangeFields('status', e.target.value)}
               >
-                {statusFilterOptions.map(({ value, label }, index) => (
+                {(isFranqueado
+                  ? statusFilterOptions.filter(({ value }) => value === 'true')
+                  : statusFilterOptions
+                ).map(({ value, label }, index) => (
                   <Option key={index} value={value} defaultValue={''}>
                     {label}
                   </Option>

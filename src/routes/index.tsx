@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import { GlobalStyle } from '../styles';
 import { useFontSize } from '../hooks/fontSize';
 import History from '../pages/History';
+import Users from '../pages/Users';
 
 const Routes: React.FC = () => {
   const { fontSize } = useFontSize();
@@ -17,6 +18,7 @@ const Routes: React.FC = () => {
         <PublicRoute path="/login" exact component={SignIn} />
         {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
         <PrivateRoute path="/history" component={History} />
+        <PrivateRoute path="/users" component={Users} />
         <Route path="*" component={() => <Redirect to="/login" />} />
       </Switch>
     </>

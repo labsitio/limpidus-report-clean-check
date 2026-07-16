@@ -15,8 +15,10 @@ import { useLoader } from './loader';
 import { addDurationInDate } from '../services/dateService';
 
 export const FALLBACK_USER = {
-  idProjeto: '0000',
+  idProjeto: 0,
   nome: 'Loading User',
+  role: 'ProjectViewer' as const,
+  isFranqueado: false,
 };
 
 export const INITIAL_STATUS = {
@@ -141,7 +143,7 @@ const DataProvider: React.FC = ({ children }) => {
   const [currentAreas, setCurrentAreas] = useState<Array<Area>>([]);
   const [baseAreas, setBaseAreas] = useState<Array<Area>>(getAreas(rawAreas));
   const [user, setUser] = useState<User>(
-    ProjectService.getCurrentProjectLocal(),
+    ProjectService.getCurrentProjectLocal() || FALLBACK_USER,
   );
 
   const updateDepartment = (newDepartments: Department[]): void => {
