@@ -51,7 +51,11 @@ export const mapLoginToUser = (data: LoginApiResponse['data']): User => ({
 
 export const canExportReports = (user?: User | null): boolean => {
   if (!user?.role) return false;
-  return user.role === 'Franqueado' || user.role === 'Admin';
+  return (
+    user.role === 'Franqueado' ||
+    user.role === 'Consultor' ||
+    user.role === 'Admin'
+  );
 };
 
 export const isAdminUser = (user?: User | null): boolean => {
@@ -59,9 +63,10 @@ export const isAdminUser = (user?: User | null): boolean => {
   return user.role === 'Admin' || user.isAdmin === true;
 };
 
+/** Franqueado ou Consultor: relatório completo / status concluído no filtro. */
 export const isFranqueadoUser = (user?: User | null): boolean => {
   if (!user) return false;
-  return user.role === 'Franqueado';
+  return user.role === 'Franqueado' || user.role === 'Consultor';
 };
 
 export const isSessionValid = (user?: User | null): boolean => {

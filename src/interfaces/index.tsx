@@ -48,7 +48,7 @@ export interface Status {
   descricao: string;
 }
 
-export type AuthRole = 'Franqueado' | 'Admin' | 'ProjectViewer';
+export type AuthRole = 'Franqueado' | 'Consultor' | 'Admin' | 'ProjectViewer';
 
 export interface AllowedProject {
   id: number;
