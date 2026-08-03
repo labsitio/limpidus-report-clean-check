@@ -65,6 +65,8 @@ export interface User {
   franqId?: number | null;
   allowedProjects?: AllowedProject[];
   expiresAtUtc?: string;
+  /** Teto efetivo de dias no histórico (Admin: null = sem limite). */
+  maxHistoryRangeDays?: number | null;
 }
 
 export interface IHistory {
