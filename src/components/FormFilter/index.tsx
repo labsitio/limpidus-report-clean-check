@@ -22,6 +22,9 @@ import {
   Input,
   Label,
   Option,
+  OverrideInput,
+  OverrideRow,
+  OverrideSaveButton,
 } from './styles';
 import { MdClose } from 'react-icons/md';
 
@@ -271,25 +274,23 @@ const FormFilter: FC<IFormFilterProps> = ({
           {isAdmin && (
             <Row flexColumn>
               <Label>Dias máx. histórico (cliente)</Label>
-              <Row justifySpaceBetween>
-                <Input
+              <OverrideRow>
+                <OverrideInput
                   type="number"
                   min={1}
-                  placeholder="vazio = 90"
+                  placeholder="90"
                   value={overrideDaysInput}
                   onChange={e => setOverrideDaysInput(e.target.value)}
                   name="maxHistoryRangeDays"
-                  style={{ flex: 1 }}
                 />
-                <Button
+                <OverrideSaveButton
                   type="button"
                   onClick={handleSaveOverride}
                   disabled={overrideSaving}
-                  style={{ marginLeft: 8, whiteSpace: 'nowrap' }}
                 >
                   {overrideSaving ? '...' : 'Salvar'}
-                </Button>
-              </Row>
+                </OverrideSaveButton>
+              </OverrideRow>
               {overrideMessage ? (
                 <Label style={{ marginTop: 4, fontSize: 12 }}>{overrideMessage}</Label>
               ) : null}

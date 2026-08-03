@@ -19,6 +19,43 @@ export const Input = styled.input`
   }
 `;
 
+export const OverrideRow = styled.div`
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 0.9rem;
+`;
+
+export const OverrideInput = styled(Input)`
+  flex: 1 1 auto;
+  min-width: 120px;
+  width: auto;
+  margin-bottom: 0;
+`;
+
+export const OverrideSaveButton = styled.button`
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 5.5rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  color: ${colors.white};
+  background-color: ${colors.blue};
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  height: auto;
+  min-height: 3.25rem;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+`;
+
 export const Label = styled.label`
   font-size: 0.875rem;
   color: ${colors.gray};
