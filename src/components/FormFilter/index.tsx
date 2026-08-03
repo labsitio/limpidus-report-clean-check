@@ -74,7 +74,7 @@ const FormFilter: FC<IFormFilterProps> = ({
   const idProjeto = currentUser?.idProjeto ?? 0;
   const nome = currentUser?.nome ?? '';
   const allowedProjects = currentUser?.allowedProjects ?? [];
-  const isFranqueado = ProjectService.isFranqueadoUser(currentUser);
+  const isProjectViewer = ProjectService.isProjectViewerUser(currentUser);
   const canSwitchProject =
     ProjectService.isAdminUser(currentUser) || allowedProjects.length > 1;
   const projectOptions =
@@ -83,6 +83,9 @@ const FormFilter: FC<IFormFilterProps> = ({
       : idProjeto
         ? [{ id: idProjeto, name: nome }]
         : [];
+  const statusOptions = isProjectViewer
+    ? statusFilterOptions.filter(({ value }) => value === 'true')
+    : statusFilterOptions;
 
   useEffect(() => {
     if (idProjeto && nome) {
@@ -94,19 +97,37 @@ const FormFilter: FC<IFormFilterProps> = ({
   }, [idProjeto, nome]);
 
   useEffect(() => {
-    if (isFranqueado && fields.status !== 'true') {
+    if (isProjectViewer && fields.status !== 'true') {
       setFields(prevFields => ({
         ...prevFields,
         status: 'true',
       }));
     }
-  }, [isFranqueado, fields.status]);
+  }, [isProjectViewer, fields.status]);
+
+  function applyProjectViewerDateClamp(
+    next: IFormFilterResolve,
+  ): IFormFilterResolve {
+    if (!isProjectViewer) return next;
+    const { initialDate, finishDate, clamped } = ProjectService.clampDateRange(
+      next.initialDate,
+      next.finishDate,
+    );
+    if (!clamped) return next;
+    return { ...next, initialDate, finishDate };
+  }
 
   function handleSubmit() {
-    onSubmit(fields);
+    const next = applyProjectViewerDateClamp(fields);
+    if (next !== fields) setFields(next);
+    onSubmit(next);
   }
   function handleChangeFields(fieldName: string, value: string) {
-    setFields({ ...fields, [fieldName]: value });
+    let next = { ...fields, [fieldName]: value };
+    if (fieldName === 'initialDate' || fieldName === 'finishDate') {
+      next = applyProjectViewerDateClamp(next);
+    }
+    setFields(next);
   }
 
   function handleProjectChange(projectIdStr: string) {
@@ -261,10 +282,7 @@ const FormFilter: FC<IFormFilterProps> = ({
                 value={fields.status}
                 onChange={e => handleChangeFields('status', e.target.value)}
               >
-                {(isFranqueado
-                  ? statusFilterOptions.filter(({ value }) => value === 'true')
-                  : statusFilterOptions
-                ).map(({ value, label }, index) => (
+                {statusOptions.map(({ value, label }, index) => (
                   <Option key={index} value={value} defaultValue={''}>
                     {label}
                   </Option>

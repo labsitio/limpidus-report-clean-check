@@ -63,10 +63,63 @@ export const isAdminUser = (user?: User | null): boolean => {
   return user.role === 'Admin' || user.isAdmin === true;
 };
 
-/** Franqueado ou Consultor: relatório completo / status concluído no filtro. */
+/** Franqueado ou Consultor: relatório completo (todos os status, export, justificativa). */
 export const isFranqueadoUser = (user?: User | null): boolean => {
   if (!user) return false;
   return user.role === 'Franqueado' || user.role === 'Consultor';
+};
+
+/** Cliente (login de projeto): só histórico concluído e range máx. 30 dias. */
+export const isProjectViewerUser = (user?: User | null): boolean => {
+  if (!user) return false;
+  return user.role === 'ProjectViewer';
+};
+
+export const PROJECT_VIEWER_MAX_RANGE_DAYS = 30;
+
+const pad2 = (n: number) => String(n).padStart(2, '0');
+
+/** Formata data local como YYYY-MM-DD (evita shift de fuso do toISOString). */
+export const toLocalIsoDate = (d: Date): string =>
+  `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+
+/** Retorna data YYYY-MM-DD há `days` dias atrás (calendário local). */
+export const daysAgoIsoDate = (days: number, from: Date = new Date()): string => {
+  const d = new Date(from.getFullYear(), from.getMonth(), from.getDate() - days);
+  return toLocalIsoDate(d);
+};
+
+export const todayIsoDate = (from: Date = new Date()): string =>
+  toLocalIsoDate(from);
+
+/** Diferença em dias (calendário) entre duas datas YYYY-MM-DD. */
+export const dateRangeDays = (initialDate: string, finishDate: string): number => {
+  const start = new Date(`${initialDate}T00:00:00`);
+  const end = new Date(`${finishDate}T00:00:00`);
+  return Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+};
+
+/** Se o range exceder maxDays, ajusta initialDate para finishDate - maxDays. */
+export const clampDateRange = (
+  initialDate: string,
+  finishDate: string,
+  maxDays: number = PROJECT_VIEWER_MAX_RANGE_DAYS,
+): { initialDate: string; finishDate: string; clamped: boolean } => {
+  const days = dateRangeDays(initialDate, finishDate);
+  if (Number.isNaN(days) || days <= maxDays) {
+    return { initialDate, finishDate, clamped: false };
+  }
+  const end = new Date(`${finishDate}T00:00:00`);
+  const clampedStart = new Date(
+    end.getFullYear(),
+    end.getMonth(),
+    end.getDate() - maxDays,
+  );
+  return {
+    initialDate: toLocalIsoDate(clampedStart),
+    finishDate,
+    clamped: true,
+  };
 };
 
 export const isSessionValid = (user?: User | null): boolean => {

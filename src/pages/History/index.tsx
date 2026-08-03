@@ -23,17 +23,20 @@ import FormFilter, { IFormFilterResolve } from '../../components/FormFilter';
 
 import {
   canExportReports,
+  clampDateRange,
+  daysAgoIsoDate,
   getCurrentProjectLocal,
-  isFranqueadoUser,
+  isProjectViewerUser,
+  todayIsoDate,
+  toLocalIsoDate,
 } from '../../services/projectService';
 import useDeviceDimensions from '../../hooks/useDevice';
-import { IField } from '../../components/Form';
 
 const today = new Date();
 
 const History: FC = () => {
   const currentUser = getCurrentProjectLocal();
-  const isFranqueado = isFranqueadoUser(currentUser);
+  const isProjectViewer = isProjectViewerUser(currentUser);
   const [history, setHistory] = useState<Array<IHistory>>([]);
   const [sort, setSort] = useState<string>('ASC');
   const [sortField, setSortField] = useState<string>('');
@@ -41,17 +44,16 @@ const History: FC = () => {
   const { isDesktop } = useDeviceDimensions();
   const [formFieldsState, setFormFieldsState] = useState<IFormFilterResolve>({
     project: { name: '', id: 0 },
-    initialDate: new Date(
-      today.getFullYear(),
-      today.getMonth() - 3,
-      today.getDay(),
-    )
-      .toISOString()
-      .split('T')[0],
-    finishDate: new Date().toISOString().split('T')[0],
+    initialDate: isProjectViewer
+      ? daysAgoIsoDate(30, today)
+      : toLocalIsoDate(
+          new Date(today.getFullYear(), today.getMonth() - 3, today.getDate()),
+        ),
+    finishDate: todayIsoDate(today),
     department: '',
     employee: '',
-    status: isFranqueado ? 'true' : '',
+    // Cliente: só concluídas. Franqueado/Consultor/Admin: todos os status.
+    status: isProjectViewer ? 'true' : '',
   });
   const [expandedRowId, setExpandedRowId] = useState<string>('');
   const { getHistory, exportHistory } = historyService();
@@ -104,8 +106,30 @@ const History: FC = () => {
       setHistory([...history.sort((a, b) => (a.status === b.status ? 1 : -1))]);
   }
 
+  const normalizeFilterParams = (params: IFormFilterResolve): IFormFilterResolve => {
+    if (!isProjectViewer) return params;
+    const { initialDate, finishDate } = clampDateRange(
+      params.initialDate,
+      params.finishDate,
+    );
+    return {
+      ...params,
+      initialDate,
+      finishDate,
+      status: 'true',
+    };
+  };
+
   const handleOnSubmit = (params: IFormFilterResolve) => {
-    getHistoryItems(params);
+    const normalized = normalizeFilterParams(params);
+    if (
+      normalized.initialDate !== params.initialDate ||
+      normalized.finishDate !== params.finishDate ||
+      normalized.status !== params.status
+    ) {
+      setFormFieldsState(normalized);
+    }
+    getHistoryItems(normalized);
   };
 
   const handleOnExport = () => {
@@ -198,7 +222,7 @@ const History: FC = () => {
   }, [formFieldsState.initialDate, formFieldsState.finishDate]);
 
   useEffect(() => {
-    getHistoryItems();
+    getHistoryItems(normalizeFilterParams(formFieldsState));
   }, []);
 
   const handleClose = () => setOpened(!opened);
