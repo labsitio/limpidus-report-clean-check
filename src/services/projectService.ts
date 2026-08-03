@@ -18,7 +18,21 @@ interface LoginApiResponse {
     nome: string;
     allowedProjects?: Array<{ id: number; name: string }>;
     expiresAtUtc?: string;
+    maxHistoryRangeDays?: number | null;
   };
+}
+
+export interface HistoryRangeApiData {
+  legacyId: number;
+  maxHistoryRangeDays: number | null;
+  defaultProjectViewerDays: number;
+  effectiveMaxDays: number | null;
+}
+
+interface HistoryRangeApiResponse {
+  success: boolean;
+  message?: string;
+  data: HistoryRangeApiData;
 }
 
 export const login = (login: string, password: string, type: LoginType = 'auto') => {
@@ -47,6 +61,7 @@ export const mapLoginToUser = (data: LoginApiResponse['data']): User => ({
   franqId: data.franqId,
   allowedProjects: data.allowedProjects,
   expiresAtUtc: data.expiresAtUtc,
+  maxHistoryRangeDays: data.maxHistoryRangeDays,
 });
 
 export const canExportReports = (user?: User | null): boolean => {
@@ -69,13 +84,50 @@ export const isFranqueadoUser = (user?: User | null): boolean => {
   return user.role === 'Franqueado' || user.role === 'Consultor';
 };
 
-/** Cliente (login de projeto): só histórico concluído e range máx. 30 dias. */
+/** Cliente (login de projeto): só histórico concluído; range default 90 dias (override por projeto). */
 export const isProjectViewerUser = (user?: User | null): boolean => {
   if (!user) return false;
   return user.role === 'ProjectViewer';
 };
 
-export const PROJECT_VIEWER_MAX_RANGE_DAYS = 30;
+/** Default do cliente quando o projeto não tem override. */
+export const DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS = 90;
+
+/** @deprecated use DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS */
+export const PROJECT_VIEWER_MAX_RANGE_DAYS = DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS;
+
+export const FRANQUEADO_MAX_RANGE_DAYS = 365;
+
+/**
+ * Teto efetivo de dias para o usuário na sessão.
+ * Admin → null (sem limite). Franqueado/Consultor → 365. ProjectViewer → override ?? 90.
+ */
+export const getEffectiveMaxRangeDays = (user?: User | null): number | null => {
+  if (!user) return DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS;
+  if (isAdminUser(user)) return null;
+  if (typeof user.maxHistoryRangeDays === 'number' && user.maxHistoryRangeDays > 0) {
+    return user.maxHistoryRangeDays;
+  }
+  if (isFranqueadoUser(user)) return FRANQUEADO_MAX_RANGE_DAYS;
+  if (isProjectViewerUser(user)) return DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS;
+  return DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS;
+};
+
+export const getHistoryRange = (legacyId: number) => {
+  return newAPI.get<HistoryRangeApiResponse>(
+    `/project/legacyId/${legacyId}/history-range`,
+  );
+};
+
+export const setHistoryRange = (
+  legacyId: number,
+  maxHistoryRangeDays: number | null,
+) => {
+  return newAPI.put<HistoryRangeApiResponse>(
+    `/project/legacyId/${legacyId}/history-range`,
+    { maxHistoryRangeDays },
+  );
+};
 
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
@@ -99,12 +151,15 @@ export const dateRangeDays = (initialDate: string, finishDate: string): number =
   return Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
 };
 
-/** Se o range exceder maxDays, ajusta initialDate para finishDate - maxDays. */
+/** Se o range exceder maxDays, ajusta initialDate para finishDate - maxDays. maxDays null = sem clamp. */
 export const clampDateRange = (
   initialDate: string,
   finishDate: string,
-  maxDays: number = PROJECT_VIEWER_MAX_RANGE_DAYS,
+  maxDays: number | null = DEFAULT_PROJECT_VIEWER_MAX_RANGE_DAYS,
 ): { initialDate: string; finishDate: string; clamped: boolean } => {
+  if (maxDays == null || maxDays <= 0) {
+    return { initialDate, finishDate, clamped: false };
+  }
   const days = dateRangeDays(initialDate, finishDate);
   if (Number.isNaN(days) || days <= maxDays) {
     return { initialDate, finishDate, clamped: false };
@@ -142,6 +197,17 @@ export const selectProject = (projectId: number, projectName: string): User | nu
     idProjeto: projectId,
     nome: projectName,
   };
+  saveProjectLocal(JSON.stringify(updated));
+  return updated;
+};
+
+/** Atualiza o teto efetivo na sessão (ex. após Admin salvar override e reler). */
+export const updateSessionMaxHistoryRangeDays = (
+  maxHistoryRangeDays: number | null,
+): User | null => {
+  const current = getCurrentProjectLocal();
+  if (!current) return null;
+  const updated: User = { ...current, maxHistoryRangeDays };
   saveProjectLocal(JSON.stringify(updated));
   return updated;
 };
