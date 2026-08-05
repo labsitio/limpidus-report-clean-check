@@ -39,8 +39,9 @@ export const HeaderButton = styled.button`
 export const Container = styled.div`
   margin: 0 auto;
   width: 100%;
-  max-width: 960px;
+  max-width: 1200px;
   padding: 1.5rem 1rem;
+  overflow-x: auto;
 `;
 
 export const Title = styled.h1`
@@ -74,6 +75,7 @@ export const SearchInput = styled.input`
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  min-width: 720px;
 `;
 
 export const TableHead = styled.thead``;
@@ -99,15 +101,20 @@ export const TableCell = styled.td`
   vertical-align: middle;
 `;
 
-export const RoleBadge = styled.span<{ $admin?: boolean }>`
+export const RoleBadge = styled.span<{ $admin?: boolean; $consultor?: boolean }>`
   display: inline-block;
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: ${props => (props.$admin ? colors.white : colors.black)};
+  color: ${props =>
+    props.$admin || props.$consultor ? colors.white : colors.black};
   background-color: ${props =>
-    props.$admin ? colors.orange : colors.grayLight};
+    props.$admin
+      ? colors.orange
+      : props.$consultor
+        ? colors.blue
+        : colors.grayLight};
 `;
 
 export const ToggleLabel = styled.label`

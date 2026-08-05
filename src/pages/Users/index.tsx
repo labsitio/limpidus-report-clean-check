@@ -66,9 +66,19 @@ const Users: FC = () => {
     return users.filter(
       u =>
         u.nome.toLowerCase().includes(term) ||
-        u.login.toLowerCase().includes(term),
+        u.login.toLowerCase().includes(term) ||
+        (u.grupos || '').toLowerCase().includes(term) ||
+        (u.nivelNome || '').toLowerCase().includes(term) ||
+        (u.role || '').toLowerCase().includes(term),
     );
   }, [users, search]);
+
+  const roleLabel = (user: FranqueadoUser) => {
+    if (user.isAdmin || user.role === 'Admin') return t('users.roleAdmin');
+    if (user.isConsultor || user.role === 'Consultor')
+      return t('users.roleConsultor');
+    return t('users.roleFranqueado');
+  };
 
   const handleToggleAdmin = async (user: FranqueadoUser, next: boolean) => {
     if (updatingId != null) return;
@@ -88,8 +98,17 @@ const Users: FC = () => {
       if (!data?.success) {
         throw new Error(data?.message || 'failed');
       }
+      const updated = data.data;
       setUsers(prev =>
-        prev.map(u => (u.id === user.id ? { ...u, isAdmin: next } : u)),
+        prev.map(u =>
+          u.id === user.id
+            ? {
+                ...u,
+                ...updated,
+                isAdmin: next,
+              }
+            : u,
+        ),
       );
       toast.success(
         next ? t('users.promoteSuccess') : t('users.demoteSuccess'),
@@ -163,6 +182,12 @@ const Users: FC = () => {
                   <Translator path="users.colType" />
                 </S.TableHeader>
                 <S.TableHeader>
+                  <Translator path="users.colNivel" />
+                </S.TableHeader>
+                <S.TableHeader>
+                  <Translator path="users.colGrupos" />
+                </S.TableHeader>
+                <S.TableHeader>
                   <Translator path="users.colAdmin" />
                 </S.TableHeader>
               </S.TableRow>
@@ -173,11 +198,25 @@ const Users: FC = () => {
                   <S.TableCell>{user.nome}</S.TableCell>
                   <S.TableCell>{user.login}</S.TableCell>
                   <S.TableCell>
-                    <S.RoleBadge $admin={user.isAdmin}>
-                      {user.isAdmin
-                        ? t('users.roleAdmin')
-                        : t('users.roleFranqueado')}
+                    <S.RoleBadge
+                      $admin={!!user.isAdmin}
+                      $consultor={
+                        !user.isAdmin &&
+                        (!!user.isConsultor || user.role === 'Consultor')
+                      }
+                    >
+                      {roleLabel(user)}
                     </S.RoleBadge>
+                  </S.TableCell>
+                  <S.TableCell>
+                    {user.nivelNome?.trim()
+                      ? user.nivelNome
+                      : t('users.nivelEmpty')}
+                  </S.TableCell>
+                  <S.TableCell>
+                    {user.grupos?.trim()
+                      ? user.grupos
+                      : t('users.gruposEmpty')}
                   </S.TableCell>
                   <S.TableCell>
                     <S.ToggleLabel>

@@ -296,28 +296,30 @@ const History: FC = () => {
               </TableHead>
               <TableBody>
                 {history.map(
-                  (
-                    {
-                      id,
-                      department,
-                      employeeName,
-                      employeeLastName,
-                      dateStart,
-                      dateEnd,
-                      duration,
-                      status,
-                      items,
-                      ...rest
-                    },
-                    index,
-                  ) => (
+                  ({
+                    id,
+                    department,
+                    employeeName,
+                    employeeLastName,
+                    dateStart,
+                    dateEnd,
+                    duration,
+                    status,
+                    items,
+                  }) => (
                     <React.Fragment key={id}>
                       <TableRow
-                        onClick={() =>
-                          setExpandedRowId(expandedRowId === id ? '' : id)
-                        }
+                        onClick={() => {
+                          if (!Array.isArray(items) || items.length === 0) {
+                            return;
+                          }
+                          setExpandedRowId(expandedRowId === id ? '' : id);
+                        }}
                         style={{
-                          cursor: 'pointer',
+                          cursor:
+                            Array.isArray(items) && items.length > 0
+                              ? 'pointer'
+                              : 'default',
                           background:
                             expandedRowId === id ? '#f5f5f5' : undefined,
                         }}
@@ -364,80 +366,47 @@ const History: FC = () => {
                           />
                         </TableCell>
                       </TableRow>
-                      {expandedRowId === id && (
-                        <TableRow>
-                          <TableCell
-                            colSpan={6}
-                            style={{ background: '#fafafa' }}
-                          >
-                            <div style={{ padding: '16px' }}>
-                              <strong>Detalhes:</strong>
-                              <br />
-                              Área: {department}
-                              <br />
-                              Funcionário:{' '}
-                              {employeeName + ' ' + employeeLastName}
-                              <br />
-                              Início: {dateStart}
-                              <br />
-                              Conclusão: {dateEnd}
-                              <br />
-                              Duração: {duration}
-                              <br />
-                              Status: {status ? 'Concluído' : 'Não Realizado'}
-                              {allowExport &&
-                                (rest as any)?.justification?.information && (
-                                  <>
-                                    <br />
-                                    Justificativa:{' '}
-                                    {(rest as any).justification.information}
-                                    {(rest as any).justification?.reason
-                                      ? ` (${(rest as any).justification.reason})`
-                                      : ''}
-                                  </>
-                                )}
-                              {Array.isArray(items) && (
-                                <div style={{ marginTop: 12 }}>
-                                  <strong>{t('dashboard.activities')}:</strong>
-                                  {items.length === 0 ? (
-                                    <div style={{ marginTop: 6, color: '#666' }}>
-                                      {t('dashboard.activitiesEmpty')}
-                                    </div>
-                                  ) : (
-                                    <ul
-                                      style={{
-                                        margin: '8px 0 0',
-                                        paddingLeft: 18,
-                                      }}
+                      {expandedRowId === id &&
+                        Array.isArray(items) &&
+                        items.length > 0 && (
+                          <TableRow>
+                            <TableCell
+                              colSpan={6}
+                              style={{ background: '#fafafa' }}
+                            >
+                              <div style={{ padding: '16px' }}>
+                                <strong>{t('dashboard.activities')}:</strong>
+                                <ul
+                                  style={{
+                                    margin: '8px 0 0',
+                                    paddingLeft: 18,
+                                  }}
+                                >
+                                  {items.map(item => (
+                                    <li
+                                      key={item.id || item.name}
+                                      style={{ marginBottom: 4 }}
                                     >
-                                      {items.map(item => (
-                                        <li
-                                          key={item.id || item.name}
-                                          style={{ marginBottom: 4 }}
-                                        >
-                                          {item.name}
-                                          {' — '}
-                                          <span
-                                            style={{
-                                              color: item.performed
-                                                ? '#2e7d32'
-                                                : '#c62828',
-                                            }}
-                                          >
-                                            {item.performed
-                                              ? t('dashboard.activityDone')
-                                              : t('dashboard.activityPending')}
-                                          </span>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      )}
+                                      {item.name}
+                                      {' — '}
+                                      <span
+                                        style={{
+                                          color: item.performed
+                                            ? '#2e7d32'
+                                            : '#c62828',
+                                        }}
+                                      >
+                                        {item.performed
+                                          ? t('dashboard.activityDone')
+                                          : t('dashboard.activityPending')}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        )}
                     </React.Fragment>
                   ),
                 )}

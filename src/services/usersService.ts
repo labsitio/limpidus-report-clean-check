@@ -1,11 +1,19 @@
 import { newAPI } from './api';
 
+export type UserListRole = 'Admin' | 'Consultor' | 'Franqueado';
+
 export interface FranqueadoUser {
   id: number;
   nome: string;
   login: string;
   isAdmin: boolean;
   isFranqueado: boolean;
+  isConsultor?: boolean;
+  role?: UserListRole;
+  nivelId?: number | null;
+  nivelNome?: string;
+  nivelGrupoId?: number | null;
+  grupos?: string;
 }
 
 interface UsersApiResponse {
