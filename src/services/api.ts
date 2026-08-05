@@ -41,7 +41,10 @@ newAPI.interceptors.request.use(config => {
 newAPI.interceptors.response.use(
   response => response,
   error => {
-    if (error?.response?.status === 401) {
+    // 401 vindo do próprio login é credencial inválida, não sessão expirada:
+    // a tela de login trata a mensagem sem redirecionar.
+    const isAuthRequest = String(error?.config?.url || '').includes('/auth/');
+    if (!isAuthRequest && error?.response?.status === 401) {
       localStorage.removeItem(STORAGE_KEY);
       if (
         typeof window !== 'undefined' &&
