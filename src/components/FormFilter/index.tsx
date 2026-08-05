@@ -88,7 +88,7 @@ const FormFilter: FC<IFormFilterProps> = ({
     allowedProjects.length > 0
       ? allowedProjects
       : idProjeto
-        ? [{ id: idProjeto, name: nome }]
+        ? [{ id: idProjeto, name: nome, level: currentUser?.level }]
         : [];
   const statusOptions = isProjectViewer
     ? statusFilterOptions.filter(({ value }) => value === 'true')
@@ -167,7 +167,7 @@ const FormFilter: FC<IFormFilterProps> = ({
     const projectId = Number(projectIdStr);
     const selected = projectOptions.find(p => p.id === projectId);
     if (!selected) return;
-    ProjectService.selectProject(selected.id, selected.name);
+    ProjectService.selectProject(selected.id, selected.name, selected.level);
     setCurrentUser(ProjectService.getCurrentProjectLocal());
     setFields(prev => ({
       ...prev,

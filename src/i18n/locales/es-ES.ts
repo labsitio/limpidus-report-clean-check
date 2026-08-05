@@ -18,6 +18,10 @@ export default {
       employee: 'Empleado',
       status: 'Status',
       messageNotFound: 'No se encontraron actividades durante este período',
+      activities: 'Actividades',
+      activitiesEmpty: 'No hay actividades registradas en esta ejecución.',
+      activityDone: 'Realizada',
+      activityPending: 'No realizada',
     },
     filter: {
       title: 'Filtro de informe',
