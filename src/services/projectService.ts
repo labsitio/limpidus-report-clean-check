@@ -16,9 +16,10 @@ interface LoginApiResponse {
     franqId?: number | null;
     idProjeto: number;
     nome: string;
-    allowedProjects?: Array<{ id: number; name: string }>;
+    allowedProjects?: Array<{ id: number; name: string; level?: number }>;
     expiresAtUtc?: string;
     maxHistoryRangeDays?: number | null;
+    level?: number;
   };
 }
 
@@ -62,6 +63,7 @@ export const mapLoginToUser = (data: LoginApiResponse['data']): User => ({
   allowedProjects: data.allowedProjects,
   expiresAtUtc: data.expiresAtUtc,
   maxHistoryRangeDays: data.maxHistoryRangeDays,
+  level: data.level,
 });
 
 export const canExportReports = (user?: User | null): boolean => {
@@ -189,16 +191,27 @@ export const saveProjectLocal = (data: string): void => {
 };
 
 /** Atualiza o projeto selecionado na sessão (mantém token/role). */
-export const selectProject = (projectId: number, projectName: string): User | null => {
+export const selectProject = (
+  projectId: number,
+  projectName: string,
+  level?: number,
+): User | null => {
   const current = getCurrentProjectLocal();
   if (!current) return null;
   const updated: User = {
     ...current,
     idProjeto: projectId,
     nome: projectName,
+    level: typeof level === 'number' ? level : current.level,
   };
   saveProjectLocal(JSON.stringify(updated));
   return updated;
+};
+
+/** True quando o projeto é Clean Check N2 ou N3 (detalhe de atividades no histórico). */
+export const isHierarchyProjectLevel = (user?: User | null): boolean => {
+  const level = user?.level ?? 0;
+  return level >= 2;
 };
 
 /** Atualiza o teto efetivo na sessão (ex. após Admin salvar override e reler). */

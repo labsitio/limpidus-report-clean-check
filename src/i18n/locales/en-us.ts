@@ -17,6 +17,10 @@ export default {
       employee: 'Employee',
       status: 'Status',
       messageNotFound: 'No activities found during this period',
+      activities: 'Activities',
+      activitiesEmpty: 'No activities recorded for this execution.',
+      activityDone: 'Done',
+      activityPending: 'Not done',
     },
     filter: {
       title: 'Reports filter',

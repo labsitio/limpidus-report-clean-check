@@ -53,6 +53,8 @@ export type AuthRole = 'Franqueado' | 'Consultor' | 'Admin' | 'ProjectViewer';
 export interface AllowedProject {
   id: number;
   name: string;
+  /** Nível Clean Check (NIVEL_PROJETO / Mongo level): 1, 2 ou 3. */
+  level?: number;
 }
 
 export interface User {
@@ -67,6 +69,16 @@ export interface User {
   expiresAtUtc?: string;
   /** Teto efetivo de dias no histórico (Admin: null = sem limite). */
   maxHistoryRangeDays?: number | null;
+  /** Nível do projeto selecionado (NIVEL_PROJETO / Mongo level). */
+  level?: number;
+}
+
+export interface IHistoryItem {
+  id: string;
+  name: string;
+  orderBy?: number | null;
+  endDate?: string;
+  performed: boolean;
 }
 
 export interface IHistory {
@@ -82,4 +94,6 @@ export interface IHistory {
     information?: string;
     reason?: string;
   } | null;
+  /** Presente apenas em projetos N2/N3; null/ausente em N1. */
+  items?: IHistoryItem[] | null;
 }

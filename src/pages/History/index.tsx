@@ -306,6 +306,7 @@ const History: FC = () => {
                       dateEnd,
                       duration,
                       status,
+                      items,
                       ...rest
                     },
                     index,
@@ -395,6 +396,44 @@ const History: FC = () => {
                                       : ''}
                                   </>
                                 )}
+                              {Array.isArray(items) && (
+                                <div style={{ marginTop: 12 }}>
+                                  <strong>{t('dashboard.activities')}:</strong>
+                                  {items.length === 0 ? (
+                                    <div style={{ marginTop: 6, color: '#666' }}>
+                                      {t('dashboard.activitiesEmpty')}
+                                    </div>
+                                  ) : (
+                                    <ul
+                                      style={{
+                                        margin: '8px 0 0',
+                                        paddingLeft: 18,
+                                      }}
+                                    >
+                                      {items.map(item => (
+                                        <li
+                                          key={item.id || item.name}
+                                          style={{ marginBottom: 4 }}
+                                        >
+                                          {item.name}
+                                          {' — '}
+                                          <span
+                                            style={{
+                                              color: item.performed
+                                                ? '#2e7d32'
+                                                : '#c62828',
+                                            }}
+                                          >
+                                            {item.performed
+                                              ? t('dashboard.activityDone')
+                                              : t('dashboard.activityPending')}
+                                          </span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </div>
+                              )}
                             </div>
                           </TableCell>
                         </TableRow>
