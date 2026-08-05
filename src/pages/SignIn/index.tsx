@@ -47,14 +47,16 @@ const SignIn: React.FC = () => {
         form.password,
       );
       if (!data?.success || !data?.data?.token) {
-        throw new Error('user not found');
+        toggleLoader(false);
+        toast.error(t(ProjectService.resolveLoginErrorKey(data)));
+        return;
       }
       const user = ProjectService.mapLoginToUser(data.data);
       updateUser(user);
       history.push('/');
     } catch (error) {
       toggleLoader(false);
-      toast.error('Usuário não encontrado');
+      toast.error(t(ProjectService.resolveLoginErrorKey(error)));
     }
   };
 

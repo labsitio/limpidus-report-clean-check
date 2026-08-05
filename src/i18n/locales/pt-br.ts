@@ -7,6 +7,15 @@ export default {
       user: 'Usuário',
       password: 'Senha',
       enter: 'Entrar',
+      errors: {
+        invalidCredentials: 'Usuário ou senha inválidos.',
+        invalidRequest: 'Informe usuário e senha.',
+        serviceUnavailable:
+          'Não foi possível acessar o serviço de autenticação. Tente novamente em alguns instantes.',
+        network:
+          'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.',
+        unexpected: 'Não foi possível concluir o login. Tente novamente.',
+      },
     },
 
     dashboard: {

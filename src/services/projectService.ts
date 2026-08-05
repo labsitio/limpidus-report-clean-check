@@ -8,6 +8,8 @@ export type LoginType = 'auto' | 'project' | 'franqueado';
 interface LoginApiResponse {
   success: boolean;
   message?: string;
+  /** Código estável de erro devolvido pela API (ver AuthErrorCodes no back). */
+  code?: string;
   data: {
     token: string;
     role: AuthRole;
@@ -42,6 +44,42 @@ export const login = (login: string, password: string, type: LoginType = 'auto')
     login,
     password,
   });
+};
+
+const LOGIN_ERROR_KEYS: Record<string, string> = {
+  invalid_credentials: 'signIn.errors.invalidCredentials',
+  invalid_request: 'signIn.errors.invalidRequest',
+  auth_service_unavailable: 'signIn.errors.serviceUnavailable',
+  unexpected_error: 'signIn.errors.unexpected',
+};
+
+/**
+ * Traduz a falha de login em uma chave de i18n. Prioriza o código da API; se ele não
+ * vier (versão antiga do back, proxy, indisponibilidade), cai para o status HTTP.
+ * Aceita tanto um erro do axios quanto o corpo de uma resposta 200 com success=false.
+ */
+export const resolveLoginErrorKey = (error: unknown): string => {
+  const asAxios = error as {
+    response?: { status?: number; data?: LoginApiResponse };
+  };
+  const payload = asAxios?.response?.data ?? (error as LoginApiResponse | undefined);
+
+  const byCode = payload?.code ? LOGIN_ERROR_KEYS[payload.code] : undefined;
+  if (byCode) return byCode;
+
+  const status = asAxios?.response?.status;
+  if (!status) {
+    // Resposta 200 com success=false: a API respondeu, então não é falha de rede.
+    return payload?.success === false
+      ? 'signIn.errors.invalidCredentials'
+      : 'signIn.errors.network';
+  }
+  if (status === 400) return 'signIn.errors.invalidRequest';
+  if (status === 401 || status === 403) return 'signIn.errors.invalidCredentials';
+  if (status === 502 || status === 503 || status === 504) {
+    return 'signIn.errors.serviceUnavailable';
+  }
+  return 'signIn.errors.unexpected';
 };
 
 /** @deprecated use login — mantido se algum código legado ainda importar */

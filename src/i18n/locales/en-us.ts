@@ -6,6 +6,15 @@ export default {
       user: 'User',
       password: 'Password',
       enter: 'Enter',
+      errors: {
+        invalidCredentials: 'Invalid username or password.',
+        invalidRequest: 'Please enter your username and password.',
+        serviceUnavailable:
+          'The authentication service is unavailable. Please try again in a few moments.',
+        network:
+          'Could not reach the server. Check your connection and try again.',
+        unexpected: 'We could not complete your sign in. Please try again.',
+      },
     },
 
     dashboard: {
