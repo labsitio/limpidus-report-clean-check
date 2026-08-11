@@ -51,9 +51,9 @@ const resolveAreaStatus = (
   return status ? STATUS.SUCCESS : STATUS.DANGER;
 };
 
-/** Cliente: oculta áreas com alguma atividade não realizada. */
+/** Cliente: só áreas com atividades e todas realizadas. Sem itens = não mostra. */
 const isVisibleToClient = (row: IHistory): boolean => {
-  if (!Array.isArray(row.items) || row.items.length === 0) return true;
+  if (!Array.isArray(row.items) || row.items.length === 0) return false;
   return row.items.every(i => i.performed);
 };
 
