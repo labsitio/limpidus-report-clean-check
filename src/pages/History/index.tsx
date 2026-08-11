@@ -391,21 +391,19 @@ const History: FC = () => {
                                         gap: 8,
                                       }}
                                     >
-                                      <span
-                                        aria-label={
+                                      <Status
+                                        status={
                                           item.performed
-                                            ? t('dashboard.activityDone')
-                                            : t('dashboard.activityPending')
+                                            ? STATUS.SUCCESS
+                                            : STATUS.DANGER
                                         }
                                         title={
                                           item.performed
                                             ? t('dashboard.activityDone')
                                             : t('dashboard.activityPending')
                                         }
-                                        style={{ fontSize: '1.15rem' }}
-                                      >
-                                        {item.performed ? '✅' : '❌'}
-                                      </span>
+                                        style={{ width: 24 }}
+                                      />
                                       <span>{item.name}</span>
                                     </li>
                                   ))}
