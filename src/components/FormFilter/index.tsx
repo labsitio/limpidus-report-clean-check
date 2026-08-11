@@ -157,11 +157,7 @@ const FormFilter: FC<IFormFilterProps> = ({
   }, [fields]);
 
   return (
-    <Container
-      ref={menuRef}
-      opened={isDesktop ? true : opened}
-      className={isDesktop ? 'desktop' : undefined}
-    >
+    <Container ref={menuRef} opened={opened}>
       <Header>
         <S.Title>
           <Translator path="filter.title" />
