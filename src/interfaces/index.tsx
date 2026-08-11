@@ -71,6 +71,8 @@ export interface User {
   maxHistoryRangeDays?: number | null;
   /** Nível do projeto selecionado (NIVEL_PROJETO / Mongo level). */
   level?: number;
+  /** ProjectViewer: pode exportar Excel (config do projeto). */
+  allowExcelExport?: boolean;
 }
 
 export interface IHistoryItem {

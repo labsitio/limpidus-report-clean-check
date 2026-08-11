@@ -26,6 +26,7 @@ type DraftRow = {
   projectName: string;
   daysInput: string;
   showActivities: boolean;
+  allowExcelExport: boolean;
   selectedIds: string[];
   allActivityIds: string[];
   availableActivities: ClientAccessData['availableActivities'];
@@ -84,6 +85,7 @@ const ClientAccess: FC = () => {
           ? ''
           : String(data.maxHistoryRangeDays),
       showActivities: data.showActivitiesToClient !== false,
+      allowExcelExport: data.allowExcelExport === true,
       selectedIds: selected,
       allActivityIds: allIds,
       availableActivities: data.availableActivities || [],
@@ -180,6 +182,7 @@ const ClientAccess: FC = () => {
           const touchesContent =
             patch.daysInput !== undefined ||
             patch.showActivities !== undefined ||
+            patch.allowExcelExport !== undefined ||
             patch.selectedIds !== undefined;
           if (touchesContent) next.dirty = true;
         }
@@ -241,6 +244,7 @@ const ClientAccess: FC = () => {
       const { data } = await setClientAccess(row.legacyId, {
         maxHistoryRangeDays: days,
         showActivitiesToClient: row.showActivities,
+        allowExcelExport: row.allowExcelExport,
         clientVisibleActivityItemIds: visibleIds,
         updateVisibleActivities: true,
       });
@@ -331,6 +335,9 @@ const ClientAccess: FC = () => {
                   <Translator path="clientAccess.colShowActivities" />
                 </S.TableHeader>
                 <S.TableHeader>
+                  <Translator path="clientAccess.colExcel" />
+                </S.TableHeader>
+                <S.TableHeader>
                   <Translator path="clientAccess.colActivities" />
                 </S.TableHeader>
                 <S.TableHeader>
@@ -377,6 +384,20 @@ const ClientAccess: FC = () => {
                       </S.ToggleLabel>
                     </S.TableCell>
                     <S.TableCell>
+                      <S.ToggleLabel>
+                        <S.ToggleInput
+                          type="checkbox"
+                          checked={row.allowExcelExport}
+                          onChange={e =>
+                            updateRow(row.legacyId, {
+                              allowExcelExport: e.target.checked,
+                            })
+                          }
+                        />
+                        <Translator path="clientAccess.allowExcel" />
+                      </S.ToggleLabel>
+                    </S.TableCell>
+                    <S.TableCell>
                       <CS.LinkButton
                         type="button"
                         disabled={!row.showActivities}
@@ -408,7 +429,7 @@ const ClientAccess: FC = () => {
                   </S.TableRow>
                   {row.expanded && row.showActivities && (
                     <S.TableRow>
-                      <S.TableCell colSpan={5}>
+                      <S.TableCell colSpan={6}>
                         <CS.ActivitiesPanel>
                           <CS.ActivitiesToolbar>
                             <CS.LinkButton
