@@ -246,10 +246,11 @@ const History: FC = () => {
           {isDesktop && (
             <FormFilter
               formFieldsState={formFieldsState}
-              opened
+              opened={opened}
               handleClose={handleClose}
               setFormFieldsState={setFormFieldsState}
               onSubmit={(params: IFormFilterResolve) => {
+                handleClose();
                 handleOnSubmit(params);
               }}
               employees={employees}
