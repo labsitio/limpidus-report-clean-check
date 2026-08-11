@@ -22,6 +22,7 @@ interface LoginApiResponse {
     expiresAtUtc?: string;
     maxHistoryRangeDays?: number | null;
     level?: number;
+    allowExcelExport?: boolean;
   };
 }
 
@@ -102,15 +103,23 @@ export const mapLoginToUser = (data: LoginApiResponse['data']): User => ({
   expiresAtUtc: data.expiresAtUtc,
   maxHistoryRangeDays: data.maxHistoryRangeDays,
   level: data.level,
+  allowExcelExport: data.allowExcelExport === true,
 });
 
 export const canExportReports = (user?: User | null): boolean => {
   if (!user?.role) return false;
-  return (
+  if (
     user.role === 'Franqueado' ||
     user.role === 'Consultor' ||
     user.role === 'Admin'
-  );
+  ) {
+    return true;
+  }
+  // Cliente: só se a permissão do projeto liberar.
+  if (user.role === 'ProjectViewer') {
+    return user.allowExcelExport === true;
+  }
+  return false;
 };
 
 export const isAdminUser = (user?: User | null): boolean => {
@@ -181,6 +190,7 @@ export interface ClientAccessData {
   defaultProjectViewerDays: number;
   effectiveMaxDays: number;
   showActivitiesToClient: boolean;
+  allowExcelExport: boolean;
   clientVisibleActivityItemIds: string[] | null;
   availableActivities: ClientActivityOption[];
 }
@@ -202,6 +212,7 @@ export const setClientAccess = (
   payload: {
     maxHistoryRangeDays: number | null;
     showActivitiesToClient: boolean;
+    allowExcelExport: boolean;
     clientVisibleActivityItemIds: string[] | null;
     updateVisibleActivities?: boolean;
   },
@@ -211,6 +222,7 @@ export const setClientAccess = (
     {
       maxHistoryRangeDays: payload.maxHistoryRangeDays,
       showActivitiesToClient: payload.showActivitiesToClient,
+      allowExcelExport: payload.allowExcelExport,
       clientVisibleActivityItemIds: payload.clientVisibleActivityItemIds,
       updateVisibleActivities: payload.updateVisibleActivities ?? true,
     },

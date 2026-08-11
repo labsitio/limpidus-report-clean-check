@@ -5,7 +5,7 @@ import historyService from '../../services/historyService';
 import * as S from '../../components/Commons';
 import { FooterLanguageSelect, Header, STATUS, Status } from '../../components';
 import { useLoader } from '../../hooks/loader';
-import { IHistory } from '../../interfaces';
+import { IHistory, IHistoryItem } from '../../interfaces';
 import {
   DateSessionFormater,
   ExtenseHour,
@@ -32,7 +32,7 @@ import {
   toLocalIsoDate,
 } from '../../services/projectService';
 import useDeviceDimensions from '../../hooks/useDevice';
-import { IHistoryItem } from '../../interfaces';
+import { downloadVisibleHistoryExcel } from '../../utils/exportVisibleHistory';
 
 const today = new Date();
 
@@ -82,7 +82,7 @@ const History: FC = () => {
     status: isProjectViewer ? 'true' : '',
   });
   const [expandedRowId, setExpandedRowId] = useState<string>('');
-  const { getHistory, exportHistory } = historyService();
+  const { getHistory } = historyService();
   const { loader, toggleLoader } = useLoader();
   const { t } = useTranslation();
   const { getFormatDay, getFormatMonth, getExtenseHour } = dateUtils();
@@ -163,36 +163,8 @@ const History: FC = () => {
   };
 
   const handleOnExport = () => {
-    const projectId =
-      formFieldsState.project?.id || idProjeto;
-    toggleLoader(true);
-    exportHistory(projectId, {
-      DateEnd: new Date(formFieldsState.finishDate),
-      DateStart: new Date(formFieldsState.initialDate),
-      Department: formFieldsState.department,
-      EmployeeName: formFieldsState.employee.split(' ')[0],
-      EmployeeLastName: formFieldsState.employee.split(' ').slice(1).join(' '),
-      Status:
-        formFieldsState.status === ''
-          ? null
-          : formFieldsState.status === 'true',
-    })
-      .then(response => {
-        const href = URL.createObjectURL(response.data);
-
-        const link = document.createElement('a');
-        link.href = href;
-        link.setAttribute(
-          'download',
-          new Date().toISOString().split('T')[0] + '_history.xlsx',
-        );
-        document.body.appendChild(link);
-        link.click();
-
-        document.body.removeChild(link);
-        URL.revokeObjectURL(href);
-      })
-      .finally(() => toggleLoader(false));
+    // Só o que está na tela (após filtros / regras de cliente).
+    downloadVisibleHistoryExcel(visibleHistory);
   };
 
   const getHistoryItems = (params?: IFormFilterResolve) => {
@@ -259,7 +231,7 @@ const History: FC = () => {
   return (
     <>
       <Header
-        buttonExport={allowExport && history.length > 0}
+        buttonExport={allowExport && visibleHistory.length > 0}
         onExport={handleOnExport}
         formFieldsState={formFieldsState}
         setFormFieldsState={setFormFieldsState}
@@ -274,11 +246,10 @@ const History: FC = () => {
           {isDesktop && (
             <FormFilter
               formFieldsState={formFieldsState}
-              opened={opened}
+              opened
               handleClose={handleClose}
               setFormFieldsState={setFormFieldsState}
               onSubmit={(params: IFormFilterResolve) => {
-                handleClose();
                 handleOnSubmit(params);
               }}
               employees={employees}
