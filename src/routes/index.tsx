@@ -8,6 +8,7 @@ import { GlobalStyle } from '../styles';
 import { useFontSize } from '../hooks/fontSize';
 import History from '../pages/History';
 import Users from '../pages/Users';
+import ClientAccess from '../pages/ClientAccess';
 
 const Routes: React.FC = () => {
   const { fontSize } = useFontSize();
@@ -19,6 +20,7 @@ const Routes: React.FC = () => {
         {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
         <PrivateRoute path="/history" component={History} />
         <PrivateRoute path="/users" component={Users} />
+        <PrivateRoute path="/client-access" component={ClientAccess} />
         <Route path="*" component={() => <Redirect to="/login" />} />
       </Switch>
     </>

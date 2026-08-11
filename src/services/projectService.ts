@@ -169,6 +169,105 @@ export const setHistoryRange = (
   );
 };
 
+export interface ClientActivityOption {
+  itemId: string;
+  name: string;
+}
+
+export interface ClientAccessData {
+  legacyId: number;
+  projectName: string;
+  maxHistoryRangeDays: number | null;
+  defaultProjectViewerDays: number;
+  effectiveMaxDays: number;
+  showActivitiesToClient: boolean;
+  clientVisibleActivityItemIds: string[] | null;
+  availableActivities: ClientActivityOption[];
+}
+
+interface ClientAccessApiResponse {
+  success: boolean;
+  message?: string;
+  data: ClientAccessData;
+}
+
+export const getClientAccess = (legacyId: number) => {
+  return newAPI.get<ClientAccessApiResponse>(
+    `/project/legacyId/${legacyId}/client-access`,
+  );
+};
+
+export const setClientAccess = (
+  legacyId: number,
+  payload: {
+    maxHistoryRangeDays: number | null;
+    showActivitiesToClient: boolean;
+    clientVisibleActivityItemIds: string[] | null;
+    updateVisibleActivities?: boolean;
+  },
+) => {
+  return newAPI.put<ClientAccessApiResponse>(
+    `/project/legacyId/${legacyId}/client-access`,
+    {
+      maxHistoryRangeDays: payload.maxHistoryRangeDays,
+      showActivitiesToClient: payload.showActivitiesToClient,
+      clientVisibleActivityItemIds: payload.clientVisibleActivityItemIds,
+      updateVisibleActivities: payload.updateVisibleActivities ?? true,
+    },
+  );
+};
+
+/** Franqueado folha (não Consultor nem Admin): só a própria carteira. */
+export const isLeafFranqueadoUser = (user?: User | null): boolean => {
+  if (!user) return false;
+  return user.role === 'Franqueado' && !isAdminUser(user);
+};
+
+/** Consultor ou Admin: veem o catálogo completo na tela de acesso do cliente. */
+export const canSeeAllClientAccessProjects = (user?: User | null): boolean => {
+  if (!user) return false;
+  return isAdminUser(user) || user.role === 'Consultor';
+};
+
+/** Admin, Franqueado ou Consultor: podem configurar acesso do cliente. */
+export const canManageClientAccess = (user?: User | null): boolean => {
+  if (!user) return false;
+  return isAdminUser(user) || isFranqueadoUser(user);
+};
+
+export interface ProjectCatalogItem {
+  id: number;
+  name: string;
+  level?: number;
+}
+
+interface ProjectListApiResponse {
+  success: boolean;
+  message?: string;
+  data: Array<{
+    legacyId: number;
+    name?: string;
+    level?: number;
+  }>;
+}
+
+/** Catálogo de projetos para a tela de acesso do cliente (filtrado no back por papel). */
+export const listProjectsForClientAccess = async (): Promise<
+  ProjectCatalogItem[]
+> => {
+  const { data } = await newAPI.get<ProjectListApiResponse>('/project');
+  if (!data?.success || !Array.isArray(data.data)) {
+    throw new Error(data?.message || 'failed');
+  }
+  return data.data
+    .map(p => ({
+      id: p.legacyId,
+      name: p.name || String(p.legacyId),
+      level: p.level,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+};
+
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
 /** Formata data local como YYYY-MM-DD (evita shift de fuso do toISOString). */

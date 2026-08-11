@@ -32,8 +32,30 @@ import {
   toLocalIsoDate,
 } from '../../services/projectService';
 import useDeviceDimensions from '../../hooks/useDevice';
+import { IHistoryItem } from '../../interfaces';
 
 const today = new Date();
+
+/** Status da área: com atividades → verde/amarelo/vermelho; sem → justificativa da API. */
+const resolveAreaStatus = (
+  status: boolean,
+  items?: IHistoryItem[] | null,
+): STATUS => {
+  if (Array.isArray(items) && items.length > 0) {
+    const allDone = items.every(i => i.performed);
+    const noneDone = items.every(i => !i.performed);
+    if (allDone) return STATUS.SUCCESS;
+    if (noneDone) return STATUS.DANGER;
+    return STATUS.ALERT;
+  }
+  return status ? STATUS.SUCCESS : STATUS.DANGER;
+};
+
+/** Cliente: oculta áreas com alguma atividade não realizada. */
+const isVisibleToClient = (row: IHistory): boolean => {
+  if (!Array.isArray(row.items) || row.items.length === 0) return true;
+  return row.items.every(i => i.performed);
+};
 
 const History: FC = () => {
   const currentUser = getCurrentProjectLocal();
@@ -69,6 +91,10 @@ const History: FC = () => {
   const [employees, setEmployees] = useState<Array<string>>([]);
   const [departments, setDepartments] = useState<Array<string>>([]);
   const [isDateChanged, setIsDateChanged] = useState(false);
+
+  const visibleHistory = isProjectViewer
+    ? history.filter(isVisibleToClient)
+    : history;
 
   function handleChangeFields(fieldName: string, value: string) {
     setFormFieldsState({ ...formFieldsState, [fieldName]: value });
@@ -260,7 +286,7 @@ const History: FC = () => {
               isDesktop={isDesktop}
             />
           )}
-          {history.length > 0 && (
+          {visibleHistory.length > 0 && (
             <Table>
               <TableHead>
                 <TableHeader>
@@ -295,7 +321,7 @@ const History: FC = () => {
                 </TableHeader>
               </TableHead>
               <TableBody>
-                {history.map(
+                {visibleHistory.map(
                   ({
                     id,
                     department,
@@ -361,7 +387,7 @@ const History: FC = () => {
                         </TableCell>
                         <TableCell>
                           <Status
-                            status={status ? STATUS.SUCCESS : STATUS.DANGER}
+                            status={resolveAreaStatus(status, items)}
                             style={{ width: '100%' }}
                           />
                         </TableCell>
@@ -380,26 +406,35 @@ const History: FC = () => {
                                   style={{
                                     margin: '8px 0 0',
                                     paddingLeft: 18,
+                                    listStyle: 'none',
                                   }}
                                 >
                                   {items.map(item => (
                                     <li
                                       key={item.id || item.name}
-                                      style={{ marginBottom: 4 }}
+                                      style={{
+                                        marginBottom: 6,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: 8,
+                                      }}
                                     >
-                                      {item.name}
-                                      {' — '}
                                       <span
-                                        style={{
-                                          color: item.performed
-                                            ? '#2e7d32'
-                                            : '#c62828',
-                                        }}
+                                        aria-label={
+                                          item.performed
+                                            ? t('dashboard.activityDone')
+                                            : t('dashboard.activityPending')
+                                        }
+                                        title={
+                                          item.performed
+                                            ? t('dashboard.activityDone')
+                                            : t('dashboard.activityPending')
+                                        }
+                                        style={{ fontSize: '1.15rem' }}
                                       >
-                                        {item.performed
-                                          ? t('dashboard.activityDone')
-                                          : t('dashboard.activityPending')}
+                                        {item.performed ? '✅' : '❌'}
                                       </span>
+                                      <span>{item.name}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -413,7 +448,7 @@ const History: FC = () => {
               </TableBody>
             </Table>
           )}
-          {history.length === 0 && !loader && (
+          {visibleHistory.length === 0 && !loader && (
             <S.MessageItemNotFound>
               {t('dashboard.messageNotFound')}
             </S.MessageItemNotFound>
