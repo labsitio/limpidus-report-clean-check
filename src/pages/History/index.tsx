@@ -51,15 +51,20 @@ const resolveAreaStatus = (
   return status ? STATUS.SUCCESS : STATUS.DANGER;
 };
 
-/** Cliente: só áreas com atividades e todas realizadas. Sem itens = não mostra. */
-const isVisibleToClient = (row: IHistory): boolean => {
+/** Cliente: sem itens = oculto. Sem permissão = só todas realizadas. Com permissão = qualquer área com itens. */
+const isVisibleToClient = (
+  row: IHistory,
+  showUnperformed: boolean,
+): boolean => {
   if (!Array.isArray(row.items) || row.items.length === 0) return false;
+  if (showUnperformed) return true;
   return row.items.every(i => i.performed);
 };
 
 const History: FC = () => {
   const currentUser = getCurrentProjectLocal();
   const isProjectViewer = isProjectViewerUser(currentUser);
+  const showUnperformed = currentUser?.showUnperformedActivitiesToClient === true;
   const maxRangeDays = getEffectiveMaxRangeDays(currentUser);
   const viewerDefaultDays =
     typeof maxRangeDays === 'number' && maxRangeDays > 0 ? maxRangeDays : 90;
@@ -93,7 +98,7 @@ const History: FC = () => {
   const [isDateChanged, setIsDateChanged] = useState(false);
 
   const visibleHistory = isProjectViewer
-    ? history.filter(isVisibleToClient)
+    ? history.filter(row => isVisibleToClient(row, showUnperformed))
     : history;
 
   function handleChangeFields(fieldName: string, value: string) {

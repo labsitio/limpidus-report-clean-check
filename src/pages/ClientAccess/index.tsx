@@ -25,14 +25,9 @@ type DraftRow = {
   legacyId: number;
   projectName: string;
   daysInput: string;
-  showActivities: boolean;
+  showUnperformed: boolean;
   allowExcelExport: boolean;
-  selectedIds: string[];
-  allActivityIds: string[];
-  availableActivities: ClientAccessData['availableActivities'];
-  expanded: boolean;
   dirty: boolean;
-  loading: boolean;
 };
 
 const ClientAccess: FC = () => {
@@ -50,7 +45,6 @@ const ClientAccess: FC = () => {
   const seeAllProjects = canSeeAllClientAccessProjects(currentUser);
 
   const resolveProjectList = useCallback(async () => {
-    // Admin/Consultor: catálogo completo via API. Franqueado: só allowedProjects da sessão.
     if (seeAllProjects) {
       return listProjectsForClientAccess();
     }
@@ -70,30 +64,15 @@ const ClientAccess: FC = () => {
     return [];
   }, [currentUser, seeAllProjects]);
 
-  const mapAccessToDraft = (data: ClientAccessData): DraftRow => {
-    const allIds = (data.availableActivities || []).map(a => a.itemId);
-    const selected =
-      data.clientVisibleActivityItemIds == null
-        ? [...allIds]
-        : data.clientVisibleActivityItemIds.filter(id => allIds.includes(id));
-
-    return {
-      legacyId: data.legacyId,
-      projectName: data.projectName || String(data.legacyId),
-      daysInput:
-        data.maxHistoryRangeDays == null
-          ? ''
-          : String(data.maxHistoryRangeDays),
-      showActivities: data.showActivitiesToClient !== false,
-      allowExcelExport: data.allowExcelExport === true,
-      selectedIds: selected,
-      allActivityIds: allIds,
-      availableActivities: data.availableActivities || [],
-      expanded: false,
-      dirty: false,
-      loading: false,
-    };
-  };
+  const mapAccessToDraft = (data: ClientAccessData): DraftRow => ({
+    legacyId: data.legacyId,
+    projectName: data.projectName || String(data.legacyId),
+    daysInput:
+      data.maxHistoryRangeDays == null ? '' : String(data.maxHistoryRangeDays),
+    showUnperformed: data.showUnperformedActivitiesToClient === true,
+    allowExcelExport: data.allowExcelExport === true,
+    dirty: false,
+  });
 
   const projectsToFetch = useMemo(() => {
     const term = search.trim().toLowerCase();
@@ -181,43 +160,12 @@ const ClientAccess: FC = () => {
         if (patch.dirty === undefined) {
           const touchesContent =
             patch.daysInput !== undefined ||
-            patch.showActivities !== undefined ||
-            patch.allowExcelExport !== undefined ||
-            patch.selectedIds !== undefined;
+            patch.showUnperformed !== undefined ||
+            patch.allowExcelExport !== undefined;
           if (touchesContent) next.dirty = true;
         }
         return next;
       }),
-    );
-  };
-
-  const toggleActivity = (legacyId: number, itemId: string) => {
-    setRows(prev =>
-      prev.map(r => {
-        if (r.legacyId !== legacyId) return r;
-        const has = r.selectedIds.includes(itemId);
-        return {
-          ...r,
-          dirty: true,
-          selectedIds: has
-            ? r.selectedIds.filter(id => id !== itemId)
-            : [...r.selectedIds, itemId],
-        };
-      }),
-    );
-  };
-
-  const selectAllActivities = (legacyId: number, all: boolean) => {
-    setRows(prev =>
-      prev.map(r =>
-        r.legacyId === legacyId
-          ? {
-              ...r,
-              dirty: true,
-              selectedIds: all ? [...r.allActivityIds] : [],
-            }
-          : r,
-      ),
     );
   };
 
@@ -234,19 +182,12 @@ const ClientAccess: FC = () => {
       days = parsed;
     }
 
-    const visibleIds =
-      row.selectedIds.length === row.allActivityIds.length
-        ? null
-        : row.selectedIds;
-
     setSavingId(row.legacyId);
     try {
       const { data } = await setClientAccess(row.legacyId, {
         maxHistoryRangeDays: days,
-        showActivitiesToClient: row.showActivities,
+        showUnperformedActivitiesToClient: row.showUnperformed,
         allowExcelExport: row.allowExcelExport,
-        clientVisibleActivityItemIds: visibleIds,
-        updateVisibleActivities: true,
       });
       if (!data?.success || !data.data) {
         throw new Error(data?.message || 'failed');
@@ -254,9 +195,7 @@ const ClientAccess: FC = () => {
       const next = mapAccessToDraft(data.data);
       setRows(prev =>
         prev.map(r =>
-          r.legacyId === row.legacyId
-            ? { ...next, expanded: r.expanded, dirty: false }
-            : r,
+          r.legacyId === row.legacyId ? { ...next, dirty: false } : r,
         ),
       );
       toast.success(t('clientAccess.saveSuccess'));
@@ -332,13 +271,10 @@ const ClientAccess: FC = () => {
                   <Translator path="clientAccess.colDays" />
                 </S.TableHeader>
                 <S.TableHeader>
-                  <Translator path="clientAccess.colShowActivities" />
+                  <Translator path="clientAccess.colUnperformed" />
                 </S.TableHeader>
                 <S.TableHeader>
                   <Translator path="clientAccess.colExcel" />
-                </S.TableHeader>
-                <S.TableHeader>
-                  <Translator path="clientAccess.colActivities" />
                 </S.TableHeader>
                 <S.TableHeader>
                   <Translator path="clientAccess.colActions" />
@@ -347,135 +283,67 @@ const ClientAccess: FC = () => {
             </S.TableHead>
             <S.TableBody>
               {filteredRows.map(row => (
-                <React.Fragment key={row.legacyId}>
-                  <S.TableRow>
-                    <S.TableCell>
-                      <CS.ProjectName>{row.projectName}</CS.ProjectName>
-                      <CS.ProjectId>ID {row.legacyId}</CS.ProjectId>
-                    </S.TableCell>
-                    <S.TableCell>
-                      <CS.DaysInput
-                        type="number"
-                        min={1}
-                        placeholder="90"
-                        value={row.daysInput}
+                <S.TableRow key={row.legacyId}>
+                  <S.TableCell>
+                    <CS.ProjectName>{row.projectName}</CS.ProjectName>
+                    <CS.ProjectId>ID {row.legacyId}</CS.ProjectId>
+                  </S.TableCell>
+                  <S.TableCell>
+                    <CS.DaysInput
+                      type="number"
+                      min={1}
+                      placeholder="90"
+                      value={row.daysInput}
+                      onChange={e =>
+                        updateRow(row.legacyId, {
+                          daysInput: e.target.value,
+                        })
+                      }
+                    />
+                    <CS.Hint>
+                      <Translator path="clientAccess.daysHint" />
+                    </CS.Hint>
+                  </S.TableCell>
+                  <S.TableCell>
+                    <S.ToggleLabel>
+                      <S.ToggleInput
+                        type="checkbox"
+                        checked={row.showUnperformed}
                         onChange={e =>
                           updateRow(row.legacyId, {
-                            daysInput: e.target.value,
+                            showUnperformed: e.target.checked,
                           })
                         }
                       />
-                      <CS.Hint>
-                        <Translator path="clientAccess.daysHint" />
-                      </CS.Hint>
-                    </S.TableCell>
-                    <S.TableCell>
-                      <S.ToggleLabel>
-                        <S.ToggleInput
-                          type="checkbox"
-                          checked={row.showActivities}
-                          onChange={e =>
-                            updateRow(row.legacyId, {
-                              showActivities: e.target.checked,
-                            })
-                          }
-                        />
-                        <Translator path="clientAccess.showActivities" />
-                      </S.ToggleLabel>
-                    </S.TableCell>
-                    <S.TableCell>
-                      <S.ToggleLabel>
-                        <S.ToggleInput
-                          type="checkbox"
-                          checked={row.allowExcelExport}
-                          onChange={e =>
-                            updateRow(row.legacyId, {
-                              allowExcelExport: e.target.checked,
-                            })
-                          }
-                        />
-                        <Translator path="clientAccess.allowExcel" />
-                      </S.ToggleLabel>
-                    </S.TableCell>
-                    <S.TableCell>
-                      <CS.LinkButton
-                        type="button"
-                        disabled={!row.showActivities}
-                        onClick={() =>
+                      <Translator path="clientAccess.showUnperformed" />
+                    </S.ToggleLabel>
+                  </S.TableCell>
+                  <S.TableCell>
+                    <S.ToggleLabel>
+                      <S.ToggleInput
+                        type="checkbox"
+                        checked={row.allowExcelExport}
+                        onChange={e =>
                           updateRow(row.legacyId, {
-                            expanded: !row.expanded,
+                            allowExcelExport: e.target.checked,
                           })
                         }
-                      >
-                        {row.expanded
-                          ? t('clientAccess.hideList')
-                          : t('clientAccess.manageActivities', {
-                              count: row.selectedIds.length,
-                              total: row.allActivityIds.length,
-                            })}
-                      </CS.LinkButton>
-                    </S.TableCell>
-                    <S.TableCell>
-                      <CS.SaveButton
-                        type="button"
-                        disabled={savingId === row.legacyId || !row.dirty}
-                        onClick={() => handleSave(row)}
-                      >
-                        {savingId === row.legacyId
-                          ? '...'
-                          : t('clientAccess.save')}
-                      </CS.SaveButton>
-                    </S.TableCell>
-                  </S.TableRow>
-                  {row.expanded && row.showActivities && (
-                    <S.TableRow>
-                      <S.TableCell colSpan={6}>
-                        <CS.ActivitiesPanel>
-                          <CS.ActivitiesToolbar>
-                            <CS.LinkButton
-                              type="button"
-                              onClick={() =>
-                                selectAllActivities(row.legacyId, true)
-                              }
-                            >
-                              {t('clientAccess.selectAll')}
-                            </CS.LinkButton>
-                            <CS.LinkButton
-                              type="button"
-                              onClick={() =>
-                                selectAllActivities(row.legacyId, false)
-                              }
-                            >
-                              {t('clientAccess.selectNone')}
-                            </CS.LinkButton>
-                          </CS.ActivitiesToolbar>
-                          {row.availableActivities.length === 0 ? (
-                            <CS.Hint>
-                              <Translator path="clientAccess.noActivities" />
-                            </CS.Hint>
-                          ) : (
-                            <CS.ActivitiesGrid>
-                              {row.availableActivities.map(act => (
-                                <S.ToggleLabel key={act.itemId}>
-                                  <S.ToggleInput
-                                    type="checkbox"
-                                    checked={row.selectedIds.includes(
-                                      act.itemId,
-                                    )}
-                                    onChange={() =>
-                                      toggleActivity(row.legacyId, act.itemId)
-                                    }
-                                  />
-                                  {act.name}
-                                </S.ToggleLabel>
-                              ))}
-                            </CS.ActivitiesGrid>
-                          )}
-                        </CS.ActivitiesPanel>
-                      </S.TableCell>
-                    </S.TableRow>
-                  )}
-                </React.Fragment>
+                      />
+                      <Translator path="clientAccess.allowExcel" />
+                    </S.ToggleLabel>
+                  </S.TableCell>
+                  <S.TableCell>
+                    <CS.SaveButton
+                      type="button"
+                      disabled={savingId === row.legacyId || !row.dirty}
+                      onClick={() => handleSave(row)}
+                    >
+                      {savingId === row.legacyId
+                        ? '...'
+                        : t('clientAccess.save')}
+                    </CS.SaveButton>
+                  </S.TableCell>
+                </S.TableRow>
               ))}
             </S.TableBody>
           </S.Table>

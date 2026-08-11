@@ -23,6 +23,7 @@ interface LoginApiResponse {
     maxHistoryRangeDays?: number | null;
     level?: number;
     allowExcelExport?: boolean;
+    showUnperformedActivitiesToClient?: boolean;
   };
 }
 
@@ -104,6 +105,8 @@ export const mapLoginToUser = (data: LoginApiResponse['data']): User => ({
   maxHistoryRangeDays: data.maxHistoryRangeDays,
   level: data.level,
   allowExcelExport: data.allowExcelExport === true,
+  showUnperformedActivitiesToClient:
+    data.showUnperformedActivitiesToClient === true,
 });
 
 export const canExportReports = (user?: User | null): boolean => {
@@ -178,21 +181,14 @@ export const setHistoryRange = (
   );
 };
 
-export interface ClientActivityOption {
-  itemId: string;
-  name: string;
-}
-
 export interface ClientAccessData {
   legacyId: number;
   projectName: string;
   maxHistoryRangeDays: number | null;
   defaultProjectViewerDays: number;
   effectiveMaxDays: number;
-  showActivitiesToClient: boolean;
+  showUnperformedActivitiesToClient: boolean;
   allowExcelExport: boolean;
-  clientVisibleActivityItemIds: string[] | null;
-  availableActivities: ClientActivityOption[];
 }
 
 interface ClientAccessApiResponse {
@@ -211,20 +207,17 @@ export const setClientAccess = (
   legacyId: number,
   payload: {
     maxHistoryRangeDays: number | null;
-    showActivitiesToClient: boolean;
+    showUnperformedActivitiesToClient: boolean;
     allowExcelExport: boolean;
-    clientVisibleActivityItemIds: string[] | null;
-    updateVisibleActivities?: boolean;
   },
 ) => {
   return newAPI.put<ClientAccessApiResponse>(
     `/project/legacyId/${legacyId}/client-access`,
     {
       maxHistoryRangeDays: payload.maxHistoryRangeDays,
-      showActivitiesToClient: payload.showActivitiesToClient,
+      showUnperformedActivitiesToClient:
+        payload.showUnperformedActivitiesToClient,
       allowExcelExport: payload.allowExcelExport,
-      clientVisibleActivityItemIds: payload.clientVisibleActivityItemIds,
-      updateVisibleActivities: payload.updateVisibleActivities ?? true,
     },
   );
 };

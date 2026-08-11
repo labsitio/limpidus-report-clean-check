@@ -73,6 +73,8 @@ export interface User {
   level?: number;
   /** ProjectViewer: pode exportar Excel (config do projeto). */
   allowExcelExport?: boolean;
+  /** ProjectViewer: pode ver atividades não realizadas. */
+  showUnperformedActivitiesToClient?: boolean;
 }
 
 export interface IHistoryItem {
