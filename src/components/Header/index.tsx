@@ -3,7 +3,7 @@ import * as S from './styles';
 import LogoCleanCheck from '../../assets/cleanCheckLogo.svg';
 import { VscFilter } from 'react-icons/vsc';
 import FormFilter from '../FormFilter';
-import { FaDownload, FaUsers } from 'react-icons/fa';
+import { FaDownload, FaUsers, FaSlidersH } from 'react-icons/fa';
 import useDeviceDimensions from '../../hooks/useDevice';
 import { ButtonExit, IconExit as IE } from '../Menu/styles';
 import Translator from '../Translator';
@@ -26,9 +26,9 @@ const Header = (props: any) => {
   const [opened, setOpened] = useState<boolean>(true);
   const [closeChange, setCloseChange] = useState<boolean>(false);
   const history = useHistory();
-  const showUsersLink = ProjectService.isAdminUser(
-    ProjectService.getCurrentProjectLocal(),
-  );
+  const session = ProjectService.getCurrentProjectLocal();
+  const showUsersLink = ProjectService.isAdminUser(session);
+  const showClientAccessLink = ProjectService.canManageClientAccess(session);
   const handleStop = () => {
     setOpened(false);
     setCloseChange(!closeChange);
@@ -44,6 +44,15 @@ const Header = (props: any) => {
       <S.Container>
         <S.Logo src={LogoCleanCheck} alt="CleanCheck logotipo" />
         <S.GroupButton>
+          {showClientAccessLink && (
+            <S.ButtonExport
+              type="button"
+              onClick={() => history.push('/client-access')}
+            >
+              <FaSlidersH />
+              <Translator path="clientAccess.nav" />
+            </S.ButtonExport>
+          )}
           {showUsersLink && (
             <S.ButtonExport
               type="button"
